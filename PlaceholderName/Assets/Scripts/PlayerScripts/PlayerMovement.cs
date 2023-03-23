@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     Vector2 rotation;
 
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject bulletSpawn;
+
     /// <summary>
     /// Activates player actions.
     /// </summary>
@@ -30,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
             context.ReadValue<Vector2>();
         controls.PlayerActions.Rotate.canceled += context => rotation = 
             Vector2.zero;
+
+        controls.PlayerActions.Shoot.performed += context => Shoot();
     }
 
     /// <summary>
@@ -65,6 +70,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 rotationVelocity = new Vector3(0, 0, -rotationControl) * 350f * 
             Time.deltaTime;
         transform.Rotate(rotationVelocity, Space.Self);
+    }
+
+    private void Shoot()
+    {
+        Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
     }
     private void OnEnable()
     {
