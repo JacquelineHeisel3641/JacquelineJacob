@@ -9,7 +9,10 @@ public class PlayerMovement : MonoBehaviour
     private float rotationControl;
 
     Vector2 movement;
-    Quaternion rotation;
+    Vector2 rotation;
+
+    [SerializeField] private GameObject bullet;
+    [SerializeField] private GameObject bulletSpawn;
 
     /// <summary>
     /// Activates player actions.
@@ -27,9 +30,11 @@ public class PlayerMovement : MonoBehaviour
 
         //Sets up rotation.
         controls.PlayerActions.Rotate.performed += context => rotation =
-            context.ReadValue<Quaternion>();
+            context.ReadValue<Vector2>();
         controls.PlayerActions.Rotate.canceled += context => rotation = 
-            Quaternion.identity;
+            Vector2.zero;
+
+        controls.PlayerActions.Shoot.performed += context => Shoot();
     }
 
     /// <summary>
@@ -44,26 +49,32 @@ public class PlayerMovement : MonoBehaviour
 
         //Debug.Log(rotation.x);
 
-        /*if(rotation.x <= 0.1 && rotation.x >= -0.1)
+        /*if(rotation.x >= 1.5f)
         {
             //Debug.Log("1");
 
-            rotationControl = rotation.x;
+            rotationControl = rotation.y;
         }
         else
         {
             //Debug.Log("2");
 
-            rotationControl = rotation.y;
-        }
+            rotationControl = rotation.x;
+        }*/
+
+        Debug.Log(rotationControl);
+
+        rotationControl = rotation.x + rotation.y;
 
         //Rotates the player.
-        Vector3 rotationVelocity = new Vector3(0, 0, -rotationControl) * 350f *
+        Vector3 rotationVelocity = new Vector3(0, 0, -rotationControl) * 350f * 
             Time.deltaTime;
-        transform.Rotate(rotationVelocity, Space.Self);*/
+        transform.Rotate(rotationVelocity, Space.Self);
+    }
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation,
-            float.MaxValue);
+    private void Shoot()
+    {
+        Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
     }
     private void OnEnable()
     {
