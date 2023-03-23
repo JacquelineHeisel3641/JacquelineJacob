@@ -1,0 +1,27 @@
+/*****************************************************************************
+// File Name :         CameraMovement.cs
+// Author :            Jacqueline Heisel
+// Creation Date :     Febraury 23, 2023
+//
+// Brief Description : This script moves the camera so the
+// player is always on screen
+*****************************************************************************/
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CameraBehaviour : MonoBehaviour
+{
+    //lets it know what to keep on screen
+    public GameObject Player;
+
+    void Update()
+    {
+
+        //set the position, moves an object (camera) to the position of
+        //another object (player) from its current poisiton, over a time period
+        transform.position = Vector3.Lerp(transform.position,
+            new Vector3(Player.transform.position.x,
+            Player.transform.position.y, -10), Time.deltaTime);
+    }
+}
