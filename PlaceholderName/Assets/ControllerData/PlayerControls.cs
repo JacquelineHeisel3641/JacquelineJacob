@@ -44,6 +44,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Open Doors"",
+                    ""type"": ""Button"",
+                    ""id"": ""580988e7-f522-451d-914e-21a835edec20"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -68,6 +77,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""18f21ccb-2689-45ee-9190-73181345c9f1"",
+                    ""path"": ""<XInputController>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Doors"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -78,6 +98,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions = asset.FindActionMap("PlayerActions", throwIfNotFound: true);
         m_PlayerActions_Movement = m_PlayerActions.FindAction("Movement", throwIfNotFound: true);
         m_PlayerActions_Rotate = m_PlayerActions.FindAction("Rotate", throwIfNotFound: true);
+        m_PlayerActions_OpenDoors = m_PlayerActions.FindAction("Open Doors", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -139,12 +160,14 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private IPlayerActionsActions m_PlayerActionsActionsCallbackInterface;
     private readonly InputAction m_PlayerActions_Movement;
     private readonly InputAction m_PlayerActions_Rotate;
+    private readonly InputAction m_PlayerActions_OpenDoors;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
         public PlayerActionsActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerActions_Movement;
         public InputAction @Rotate => m_Wrapper.m_PlayerActions_Rotate;
+        public InputAction @OpenDoors => m_Wrapper.m_PlayerActions_OpenDoors;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -160,6 +183,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Rotate.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRotate;
                 @Rotate.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRotate;
                 @Rotate.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnRotate;
+                @OpenDoors.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOpenDoors;
+                @OpenDoors.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOpenDoors;
+                @OpenDoors.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnOpenDoors;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -170,6 +196,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Rotate.started += instance.OnRotate;
                 @Rotate.performed += instance.OnRotate;
                 @Rotate.canceled += instance.OnRotate;
+                @OpenDoors.started += instance.OnOpenDoors;
+                @OpenDoors.performed += instance.OnOpenDoors;
+                @OpenDoors.canceled += instance.OnOpenDoors;
             }
         }
     }
@@ -178,5 +207,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
+        void OnOpenDoors(InputAction.CallbackContext context);
     }
 }

@@ -22,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Open Doors",
+                    "type": "Button",
+                    "id": "580988e7-f522-451d-914e-21a835edec20",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -44,6 +53,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Rotate",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "18f21ccb-2689-45ee-9190-73181345c9f1",
+                    "path": "<XInputController>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Doors",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
