@@ -7,14 +7,16 @@ public class PlayerMovement : MonoBehaviour
 {
     PlayerControls controls;
 
-    private float rotationControl;
+    private float angle;
     [SerializeReference] private float playerSpeed = 5f;
 
     Vector2 movement;
     Vector2 rotation;
 
-    [SerializeField] private GameObject bullet;
+    private GameObject bullet;
     [SerializeField] private GameObject bulletSpawn;
+
+    private Rigidbody2D rb2D;
 
     /// <summary>
     /// Activates player actions.
@@ -24,17 +26,21 @@ public class PlayerMovement : MonoBehaviour
         //References the player controls.
         controls = new PlayerControls();
 
+        rb2D = gameObject.GetComponent<Rigidbody2D>();
+
         //Sets up movement.
-        /*controls.PlayerActions.Movement.performed += context => movement = context.
+        controls.PlayerActions.Movement.performed += context => movement = context.
             ReadValue<Vector2>();
         controls.PlayerActions.Movement.canceled += context => movement = 
-            Vector2.zero;*/
+            Vector2.zero;
 
         //Sets up rotation.
         controls.PlayerActions.Rotate.performed += context => rotation =
             context.ReadValue<Vector2>();
         controls.PlayerActions.Rotate.canceled += context => rotation = 
             Vector2.zero;
+
+        controls.PlayerActions.Rotate.performed += context => RotatePlayer();
 
         controls.PlayerActions.Shoot.performed += context => Shoot();
     }
@@ -51,40 +57,14 @@ public class PlayerMovement : MonoBehaviour
 
         //Moves player using values read in through the Move function when receiving
         //Move action input.
-        transform.Translate(new Vector3(movement.x, movement.y, 0) * playerSpeed 
-            * Time.deltaTime);
-
-        //Debug.Log(rotation.x);
-
-        /*if(rotation.x >= 1.5f)
-        {
-            //Debug.Log("1");
-
-            rotationControl = rotation.y;
-        }
-        else
-        {
-            //Debug.Log("2");
-
-            rotationControl = rotation.x;
-        }*/
-
-        //Debug.Log(rotationControl);
-
-        rotationControl = rotation.x + rotation.y;
-
-        //Rotates the player.
-        Vector3 rotationVelocity = new Vector3(0, 0, -rotationControl) * 350f * 
+        Vector2 movementVelocity = new Vector2(movement.x, movement.y) * 400f *
             Time.deltaTime;
-        transform.Rotate(rotationVelocity, Space.Self);
-    }
+        rb2D.velocity = movementVelocity;
 
-    /// <summary>
-    /// Reads value from Move action input and stores it in movement.
-    /// </summary>
-    /// <param name="context"> Value passed in from Move action. </param>
-    public void Movement(InputAction.CallbackContext context) => movement = 
-        context.ReadValue<Vector2>();
+        Debug.Log(rotation);
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+    }
 
     /// <summary>
     /// Fires bullet when the Shoot action is performed.
@@ -96,6 +76,17 @@ public class PlayerMovement : MonoBehaviour
         //rotation of the player.
         Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
     }
+
+    private void RotatePlayer()
+    {
+        angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+    }
+
+    public void SetBulletPrefab()
+    {
+        
+    }
+
     private void OnEnable()
     {
         controls.PlayerActions.Enable();
