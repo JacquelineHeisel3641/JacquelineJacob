@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+//IGNORE THIS SCRIPT.
+
 public class PlayerBugFixScript : MonoBehaviour
 {
     PlayerControls controls;

@@ -4,6 +4,8 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "RangedWeaponData", menuName = "Ranged Weapon Data")]
 
+//IGNORE THIS SCRIPT.
+
 public class RangedWeaponData : ScriptableObject
 {
     [SerializeField] private float baseDamage = 5f;

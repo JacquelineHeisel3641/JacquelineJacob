@@ -158,7 +158,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-4331400867307001736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,6 +174,8 @@ MonoBehaviour:
   rangedWeapon: {fileID: 11400000, guid: 88cdd0bd3e080ba49a9c39761745bec0, type: 2}
   bulletPrefab: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
   basicBullet: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
+  reflectorBullet: {fileID: 4077064475750173004, guid: fc278313a5076e14fa803b5fe5bf7d15, type: 3}
+  bazookaBullet: {fileID: 0}
 --- !u!58 &-371111868173601943
 CircleCollider2D:
   m_ObjectHideFlags: 0
