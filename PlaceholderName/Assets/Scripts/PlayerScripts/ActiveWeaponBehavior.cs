@@ -6,11 +6,18 @@ public class ActiveWeaponBehavior : MonoBehaviour
 {
     PlayerControls controls;
 
-    private RangedWeaponData[] carriedWeapons = new RangedWeaponData[2];
+    private RangedWeaponData[] carriedWeapons = new RangedWeaponData[3];
+
+    private GameObject[] bulletPrefabArray = new GameObject[10];
+    private GameObject[] bulletPrefabNames = new GameObject[10];
 
     private int equippedWeapon = 0;
 
-    [SerializeField] private RangedWeaponData rangedWeapon;
+    public RangedWeaponData rangedWeapon;
+
+    public GameObject bulletPrefab;
+
+    [SerializeField] private GameObject basicBullet;
 
     private void Awake()
     {
@@ -18,29 +25,46 @@ public class ActiveWeaponBehavior : MonoBehaviour
 
         carriedWeapons[0] = Resources.Load<RangedWeaponData>("BasicPistolData");
         carriedWeapons[1] = Resources.Load<RangedWeaponData>("TestGunData");
+        carriedWeapons[2] = Resources.Load<RangedWeaponData>("TestGunData");
 
-        //controls.PlayerActions.SwitchWeapons.performed += context => equippedWeapon = context.ReadValue<bool>();
+        bulletPrefabArray[0] = basicBullet;
+
+        bulletPrefab = bulletPrefabArray[0];
+
+        //controls.PlayerActions.SwitchWeapons.performed += context => SwitchWeapons();
     }
 
     private void Start()
     {
         rangedWeapon = carriedWeapons[0];
 
-        StartCoroutine(DebugWeaponDataPrint());
+        //StartCoroutine(DebugWeaponDataPrint());
     }
 
     private void SwitchWeapons()
     {
-        if(equippedWeapon == 0)
+        switch(equippedWeapon)
         {
-            equippedWeapon = 1;
-            rangedWeapon = carriedWeapons[equippedWeapon];
+            case 0:
+                equippedWeapon++;
+                RangedWeaponAssigner();
+                break;
+            case 1:
+                equippedWeapon++;
+                RangedWeaponAssigner();
+                break;
+            case 2:
+                equippedWeapon = 0;
+                RangedWeaponAssigner();
+                break;   
         }
-        else
-        {
-            equippedWeapon = 0;
-            rangedWeapon = carriedWeapons[equippedWeapon];
-        }
+    }
+
+    private void RangedWeaponAssigner()
+    {
+        rangedWeapon = carriedWeapons[equippedWeapon];
+
+        bulletPrefab = bulletPrefabArray[0];
     }
 
     private IEnumerator DebugWeaponDataPrint()

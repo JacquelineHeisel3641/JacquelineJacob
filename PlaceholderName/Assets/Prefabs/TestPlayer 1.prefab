@@ -43,8 +43,9 @@ GameObject:
   - component: {fileID: 3506838047793440267}
   - component: {fileID: 3506838047793440277}
   - component: {fileID: 3506838047793440276}
-  - component: {fileID: 5038495882499761259}
   - component: {fileID: -4331400867307001736}
+  - component: {fileID: -371111868173601943}
+  - component: {fileID: 7814098267779955022}
   m_Layer: 0
   m_Name: TestPlayer 1
   m_TagString: Untagged
@@ -133,9 +134,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb493f942d8c8a143b50f21d74d6049b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 5
-  bullet: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
+  playerSpeed: 300
+  bulletSpeed: 10
   bulletSpawn: {fileID: 3506838046894419043}
+  mainCamera: {fileID: 0}
 --- !u!50 &3506838047793440276
 Rigidbody2D:
   serializedVersion: 4
@@ -157,7 +159,38 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5038495882499761259
+--- !u!114 &-4331400867307001736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506838047793440264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 58616089a3b88014a9c4187eb0cf5509, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangedWeapon: {fileID: 11400000, guid: 88cdd0bd3e080ba49a9c39761745bec0, type: 2}
+  bulletPrefab: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
+  basicBullet: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
+--- !u!58 &-371111868173601943
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506838047793440264}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.28
+--- !u!114 &7814098267779955022
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,7 +203,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 4176f5344fad1374aac7a267285a23c2, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -186,8 +219,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3506838047793440277}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
-        m_MethodName: Movement
-        m_Mode: 0
+        m_MethodName: MovePlayer
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -199,7 +232,19 @@ MonoBehaviour:
     m_ActionId: cbb79ba6-be07-48a9-b17b-85f38ff101df
     m_ActionName: PlayerActions/Movement
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3506838047793440277}
+        m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
+        m_MethodName: RotatePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7aaf0f0a-fe4e-4f3c-bcd5-69bc9a81d581
     m_ActionName: PlayerActions/Rotate
   - m_PersistentCalls:
@@ -209,25 +254,12 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls: []
     m_ActionId: e9b99053-eb02-4505-932b-405104d465a2
-    m_ActionName: PlayerActions/SwitchWeapons[/XInputControllerWindows/buttonNorth,/Keyboard/space]
+    m_ActionName: PlayerActions/SwitchWeapons[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &-4331400867307001736
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3506838047793440264}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58616089a3b88014a9c4187eb0cf5509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rangedWeapon: {fileID: 0}
 --- !u!1 &3506838048107804756
 GameObject:
   m_ObjectHideFlags: 0
