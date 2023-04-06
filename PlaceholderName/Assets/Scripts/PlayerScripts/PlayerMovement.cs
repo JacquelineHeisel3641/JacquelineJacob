@@ -5,18 +5,30 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    PlayerControls controls;
+    InputActionAsset inputAsset;
+    InputActionMap inputMap;
 
     private float angle;
-    [SerializeReference] private float playerSpeed = 5f;
+    [SerializeReference] private float playerSpeed = 300f;
+    [SerializeField] private float bulletSpeed = 100f;
 
     Vector2 movement;
     Vector2 rotation;
 
+    Transform bulletSpawnPos;
+
     private GameObject bullet;
     [SerializeField] private GameObject bulletSpawn;
+    private GameObject currPlayer;
+    private GameObject reticle;
+
+    public GameObject mainCamera;
 
     private Rigidbody2D rb2D;
+
+    private InputAction inputMovement;
+    private InputAction inputRotate;
+    private InputAction shoot;
 
     /// <summary>
     /// Activates player actions.
@@ -24,25 +36,44 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         //References the player controls.
-        controls = new PlayerControls();
+        inputAsset = this.GetComponent<PlayerInput>().actions;
+        inputMap = inputAsset.FindActionMap("PlayerActions");
+
+        //NO FindAction() LINES ABOVE THIS POINT
+
+        inputMovement = inputMap.FindAction("Movement");
+        inputRotate = inputMap.FindAction("Rotate");
+        shoot = inputMap.FindAction("Shoot");
+
+        currPlayer = gameObject;
+        reticle = currPlayer.transform.Find("TestReticle").gameObject;
 
         rb2D = gameObject.GetComponent<Rigidbody2D>();
 
         //Sets up movement.
-        controls.PlayerActions.Movement.performed += context => movement = context.
-            ReadValue<Vector2>();
-        controls.PlayerActions.Movement.canceled += context => movement = 
-            Vector2.zero;
+        inputMovement.performed += context => movement = context.ReadValue
+            <Vector2>();
+        inputMovement.canceled += context => movement = Vector2.zero;
 
         //Sets up rotation.
-        controls.PlayerActions.Rotate.performed += context => rotation =
-            context.ReadValue<Vector2>();
-        controls.PlayerActions.Rotate.canceled += context => rotation = 
-            Vector2.zero;
 
-        controls.PlayerActions.Rotate.performed += context => RotatePlayer();
 
-        controls.PlayerActions.Shoot.performed += context => Shoot();
+        inputRotate.performed += context => rotation = context.ReadValue<Vector2>();
+        //inputRotate.canceled += context => rotation = Vector2.zero;
+
+        inputRotate.performed += context => RotatePlayer();
+
+        //Executes function responsible for spawning bullets.
+        shoot.performed += context => Shoot();
+
+        mainCamera = GameObject.Find("Main Camera");
+
+    }
+
+    private void Start()
+    {
+        mainCamera.GetComponent<TestLeadPlayerAssigning>().LeadPlayerAssigner
+            (gameObject);
     }
 
     /// <summary>
@@ -50,20 +81,12 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
-        //Moves the player.
-        /*Vector2 movementVelocity = new Vector2(movement.x, movement.y) * 5 *
-            Time.deltaTime;
-        transform.Translate(movementVelocity, Space.World);*/
-
-        //Moves player using values read in through the Move function when receiving
-        //Move action input.
-        Vector2 movementVelocity = new Vector2(movement.x, movement.y) * 400f *
-            Time.deltaTime;
+        Vector2 movementVelocity = new Vector2(movement.x, movement.y) * playerSpeed 
+            * Time.deltaTime;
         rb2D.velocity = movementVelocity;
 
-        Debug.Log(rotation);
-
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
+        bullet = GetComponent<ActiveWeaponBehavior>().bulletPrefab;
+        bulletSpawnPos = bulletSpawn.transform;
     }
 
     /// <summary>
@@ -74,12 +97,21 @@ public class PlayerMovement : MonoBehaviour
         //Bullet spawns at the location of the bulletSpawn GameObject, which is a
         //child of the player. The direction it travels is determined by the
         //rotation of the player.
-        Instantiate(bullet, bulletSpawn.transform.position, transform.rotation);
+
+        //FIND A VIDEO THAT ACTUALLY WORKS
+        //Instantiate(bullet, bulletSpawn.transform.position, transform.rotation)
+        //.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5f);
+
+        var spawnedBullet = Instantiate(bullet, bulletSpawn.transform.position, bulletSpawnPos.rotation);
+        spawnedBullet.GetComponent<Rigidbody2D>().velocity = bulletSpawnPos.up * bulletSpeed;
+
     }
 
-    private void RotatePlayer()
+    public void RotatePlayer()
     {
         angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg;
+
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
 
     public void SetBulletPrefab()
@@ -89,11 +121,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.PlayerActions.Enable();
+        inputMap.Enable();
     }
 
     private void OnDisable()
     {
-        controls.PlayerActions.Disable();
+        inputMap.Disable();
     }
 }

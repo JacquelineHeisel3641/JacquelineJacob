@@ -8,7 +8,7 @@ public class ActiveWeaponBehavior : MonoBehaviour
 
     private RangedWeaponData[] carriedWeapons = new RangedWeaponData[3];
 
-    private GameObject[] bulletPrefabs = new GameObject[10];
+    private GameObject[] bulletPrefabArray = new GameObject[10];
     private GameObject[] bulletPrefabNames = new GameObject[10];
 
     private int equippedWeapon = 0;
@@ -27,7 +27,9 @@ public class ActiveWeaponBehavior : MonoBehaviour
         carriedWeapons[1] = Resources.Load<RangedWeaponData>("TestGunData");
         carriedWeapons[2] = Resources.Load<RangedWeaponData>("TestGunData");
 
-        bulletPrefabs[0] = basicBullet;
+        bulletPrefabArray[0] = basicBullet;
+
+        bulletPrefab = bulletPrefabArray[0];
 
         //controls.PlayerActions.SwitchWeapons.performed += context => SwitchWeapons();
     }
@@ -62,7 +64,7 @@ public class ActiveWeaponBehavior : MonoBehaviour
     {
         rangedWeapon = carriedWeapons[equippedWeapon];
 
-        //bulletPrefab = 
+        bulletPrefab = bulletPrefabArray[0];
     }
 
     private IEnumerator DebugWeaponDataPrint()
