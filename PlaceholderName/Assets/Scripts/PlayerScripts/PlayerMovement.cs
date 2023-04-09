@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeReference] private float playerSpeed = 300f;
     [SerializeField] private float bulletSpeed = 100f;
 
+    private bool isPlayer2 = false;
+
     Vector2 movement;
     Vector2 rotation;
 
@@ -83,6 +85,8 @@ public class PlayerMovement : MonoBehaviour
         //otherwise does nothing.
         mainCamera.GetComponent<TestLeadPlayerAssigning>().LeadPlayerAssigner
             (gameObject);
+
+        AssignPlayerTags();
     }
 
     /// <summary>
@@ -114,6 +118,21 @@ public class PlayerMovement : MonoBehaviour
         spawnedBullet.GetComponent<Rigidbody2D>().velocity = bulletSpawnPos.up 
             * bulletSpeed;
 
+    }
+
+    /// <summary>
+    /// Assigns tags to differentiate players 1 and 2 upon being instantiated.
+    /// </summary>
+    private void AssignPlayerTags()
+    {
+        if(isPlayer2)
+        {
+            gameObject.tag = "Player2";
+        }
+        else
+        {
+            gameObject.tag = "Player1";
+        }
     }
 
     /// <summary>

@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class bulletBehavior : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float speed = 10f;
 
     /// <summary>
@@ -24,7 +24,7 @@ public class bulletBehavior : MonoBehaviour
         //Executes if the collision is an enemy.
         if(collision.gameObject.CompareTag("Enemy"))
         {
-            //CALL ENEMYDAMAGE FUNCTION
+            collision.gameObject.GetComponent<DamageEnemyScript>().TakeDamage(damage);
 
             Destroy(gameObject);
         }

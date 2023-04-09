@@ -11,7 +11,7 @@ using UnityEngine;
 
 public class ReflectorBulletBehavior : MonoBehaviour
 {
-    [SerializeField] private float damage;
+    [SerializeField] private int damage;
     [SerializeField] private float speed = 10f;
 
     private int wallCollisions = 0;
@@ -44,7 +44,7 @@ public class ReflectorBulletBehavior : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
-            //CALL ENEMYDAMAGE FUNCTION
+            collision.gameObject.GetComponent<DamageEnemyScript>().TakeDamage(damage);
 
             Destroy(gameObject);
         }
