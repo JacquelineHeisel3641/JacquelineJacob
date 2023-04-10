@@ -1,90 +1,97 @@
+/*****************************************************************************
+// File Name :         ActiveWeaponBehavior.cs
+// Author :            Jacob Bateman
+// Creation Date :     4/6/2023
+//
+// Brief Description : Sets the active bullet prefab for the player to instantiate.
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class ActiveWeaponBehavior : MonoBehaviour
 {
-    PlayerControls controls;
-
-    private RangedWeaponData[] carriedWeapons = new RangedWeaponData[3];
+    InputActionAsset inputAsset;
+    InputActionMap inputMap;
 
     private GameObject[] bulletPrefabArray = new GameObject[10];
-    private GameObject[] bulletPrefabNames = new GameObject[10];
+    private GameObject[] carriedWeapons = new GameObject[10];
 
-    private int equippedWeapon = 0;
+    private int activeBulletPrefab = 0;
 
     public RangedWeaponData rangedWeapon;
 
     public GameObject bulletPrefab;
 
     [SerializeField] private GameObject basicBullet;
+    [SerializeField] private GameObject reflectorBullet;
+    [SerializeField] private GameObject bazookaBullet;
 
+    InputAction switchWeapons;
+
+    /// <summary>
+    /// Assigns bullet prefabs to their array.
+    /// </summary>
     private void Awake()
     {
-        controls = new PlayerControls();
+        //Sets up references to the input map.
+        inputAsset = this.GetComponent<PlayerInput>().actions;
+        inputMap = inputAsset.FindActionMap("PlayerActions");
 
-        carriedWeapons[0] = Resources.Load<RangedWeaponData>("BasicPistolData");
-        carriedWeapons[1] = Resources.Load<RangedWeaponData>("TestGunData");
-        carriedWeapons[2] = Resources.Load<RangedWeaponData>("TestGunData");
+        //Sets a way to access the SwitchWeapons action.
+        switchWeapons = inputMap.FindAction("SwitchWeapons");
 
+        //Populates the bulletPrefabArray with all bullet prefabs in the game.
         bulletPrefabArray[0] = basicBullet;
+        bulletPrefabArray[1] = reflectorBullet;
+        bulletPrefabArray[2] = bazookaBullet;
 
         bulletPrefab = bulletPrefabArray[0];
 
-        //controls.PlayerActions.SwitchWeapons.performed += context => SwitchWeapons();
+        switchWeapons.performed += context => SwitchWeapons();
     }
 
+    /// <summary>
+    /// Initial setup to make sure there is no null reference exception.
+    /// </summary>
     private void Start()
     {
-        rangedWeapon = carriedWeapons[0];
-
-        //StartCoroutine(DebugWeaponDataPrint());
+        //Sets active weapon to whatever is in the first slot.
+        bulletPrefab = bulletPrefabArray[0];
     }
 
+    /// <summary>
+    /// Switches active bullet prefab when SwitchWeapons action is taken.
+    /// </summary>
     private void SwitchWeapons()
     {
-        switch(equippedWeapon)
+        //Cycles through weapons depending on the currently active bullet prefab.
+        switch(activeBulletPrefab)
         {
             case 0:
-                equippedWeapon++;
+                //Increments to next weapon.
+                activeBulletPrefab++;
                 RangedWeaponAssigner();
                 break;
             case 1:
-                equippedWeapon++;
+                //Increments to next weapon.
+                activeBulletPrefab++;
                 RangedWeaponAssigner();
                 break;
             case 2:
-                equippedWeapon = 0;
+                //Resets active weapon to first slot.
+                activeBulletPrefab = 0;
                 RangedWeaponAssigner();
                 break;   
         }
     }
 
+    /// <summary>
+    /// Sets bulletPrefab to new bullet prefab.
+    /// </summary>
     private void RangedWeaponAssigner()
     {
-        rangedWeapon = carriedWeapons[equippedWeapon];
-
-        bulletPrefab = bulletPrefabArray[0];
-    }
-
-    private IEnumerator DebugWeaponDataPrint()
-    {
-        for (; ; )
-        {
-            print(rangedWeapon.BaseAmmoCount);
-            print(equippedWeapon);
-
-            yield return new WaitForSeconds(3f);
-        }
-    }
-
-    private void OnEnable()
-    {
-        controls.PlayerActions.SwitchWeapons.Enable();
-    }
-
-    private void OnDisable()
-    {
-        controls.PlayerActions.SwitchWeapons.Disable();
+        bulletPrefab = bulletPrefabArray[activeBulletPrefab];
     }
 }

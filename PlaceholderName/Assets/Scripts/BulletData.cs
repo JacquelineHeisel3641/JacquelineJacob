@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//IGNORE THIS SCRIPT.
+
 public class BulletData : ScriptableObject
 {
     [SerializeField] private float bulletSpeed = 2.5f;
