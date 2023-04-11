@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         TestLeadPlayerAssigning.cs
 // Author :            Jacob Bateman
-// Creation Date :     4/6/2023
+// Creation Date :     April 6, 2023
 //
 // Brief Description : Assigns the lead player and sets the camera to follow them.
 *****************************************************************************/

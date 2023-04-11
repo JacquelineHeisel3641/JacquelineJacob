@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         bulletBehavior.cs
 // Author :            Jacob Bateman
-// Creation Date :     4/6/2023
+// Creation Date :     April 6, 2023
 //
 // Brief Description : Contains parameters for the basic pistol's functionality.
 *****************************************************************************/
