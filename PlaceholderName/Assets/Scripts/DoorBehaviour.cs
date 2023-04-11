@@ -1,5 +1,5 @@
 /*****************************************************************************
-// File Name :         DoorBehaciour.cs
+// File Name :         DoorBehaviour.cs
 // Author :            Jacqueline Heisel
 // Creation Date :     April 6, 2023
 //
@@ -52,7 +52,7 @@ public class DoorBehaviour : MonoBehaviour
 
     private void DoorOpen_canceled(InputAction.CallbackContext obj)
     {
-        
+       //not used yet  
     }
 
     /// <summary>
@@ -61,22 +61,14 @@ public class DoorBehaviour : MonoBehaviour
     /// <param name="obj"></param>
     private void DoorOpen_started(InputAction.CallbackContext obj)
     {
-        UnlockDoor();
+        if (EnemyController.amountOfEnemies == 0)
+        {
+            UnlockDoor();
+        }
+        
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    door1Unlocked = true;
-
-        //}
-        //if (door1Unlocked)
-        //{
-        //    UnlockDoor();
-        //}
-    }
+   
 
     /// <summary>
     /// Checking to see which door to unlock based on how many doors the
