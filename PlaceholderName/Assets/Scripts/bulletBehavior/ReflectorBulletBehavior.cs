@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         ReflectorBulletBehavior.cs
 // Author :            Jacob Bateman
-// Creation Date :     4/6/2023
+// Creation Date :     April 6, 2023
 //
 // Brief Description : Handles functions related to the reflector's bullet behavior.
 *****************************************************************************/

@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         ActiveWeaponBehavior.cs
 // Author :            Jacob Bateman
-// Creation Date :     4/6/2023
+// Creation Date :     April 6, 2023
 //
 // Brief Description : Sets the active bullet prefab for the player to instantiate.
 *****************************************************************************/
