@@ -1,10 +1,10 @@
 /*****************************************************************************
 // File Name :         CameraMovement.cs
 // Author :            Jacqueline Heisel
-// Creation Date :     Febraury 23, 2023
+// Creation Date :     March 14, 2023
 //
 // Brief Description : This script moves the camera so the
-// player is always on screen
+// player is always on screen - this is outdated, and soley here for reference
 *****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
