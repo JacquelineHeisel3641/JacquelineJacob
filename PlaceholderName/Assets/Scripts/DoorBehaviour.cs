@@ -16,12 +16,12 @@ using UnityEngine.InputSystem;
 public class DoorBehaviour : MonoBehaviour
 {
     // bools to check which doors has been opened
-    public bool door1Unlocked;
-    public bool door2Unlocked;
-    public bool door3Unlocked;
-    public bool door4Unlocked;
-    public bool door5Unlocked;
-    public bool door6Unlocked;
+    public static bool door1Unlocked;
+    public static bool door2Unlocked;
+    public static bool door3Unlocked;
+    public static bool door4Unlocked;
+    public static bool door5Unlocked;
+    public static bool door6Unlocked;
 
     //game objects to assign sections of the tile map to certain doors
     public GameObject door1TileMap;
