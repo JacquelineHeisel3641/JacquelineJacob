@@ -8,6 +8,9 @@ TagManager:
   - Enemy
   - Player1
   - Player2
+  - Room1Spawner
+  - Room2Spawner
+  - Room3Spawner
   layers:
   - Default
   - TransparentFX

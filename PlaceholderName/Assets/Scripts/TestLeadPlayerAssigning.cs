@@ -42,6 +42,11 @@ public class TestLeadPlayerAssigning : MonoBehaviour
         {
             leadPlayer = player;
 
+            /*if (leadPlayerAssigned == false)
+            {
+                gameObject.GetComponent<GameController>().LeadPlayerIs(leadPlayer);
+            }*/
+
             leadPlayerAssigned = true;
         }
     }

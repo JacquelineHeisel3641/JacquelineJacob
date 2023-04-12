@@ -77,7 +77,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 5
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.16081923, g: 0.38679248, b: 0.12224101, a: 1}
   m_FlipX: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   speed: 2
   player1: {fileID: 0}
   player2: {fileID: 0}
+  enemyController: {fileID: 0}
 --- !u!114 &8318876349339473630
 MonoBehaviour:
   m_ObjectHideFlags: 0
