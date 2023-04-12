@@ -1,3 +1,10 @@
+/*****************************************************************************
+// File Name :         ButtonController.cs
+// Author :            Jacqueline Heisel
+// Creation Date :     April 6, 2023
+//
+// Brief Description : Has the funtions for all buttons in the game
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,23 +13,7 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-   // public AudioClip newGame;
-    //public AudioClip click;
-
-    //public Text soundStatus;
-    //  public Text musicStatus;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
     public void PlaySound()
     {
         Vector3 camPos = Camera.main.transform.position;
@@ -53,7 +44,7 @@ public class ButtonController : MonoBehaviour
         //    // Play sound effect 
         //    AudioSource.PlayClipAtPoint(click, camPos);
         //}
-        SceneManager.LoadScene("Instructions");
+       // SceneManager.LoadScene("Instructions");
         Debug.Log("sound please");
     }
     public void NewGame()
@@ -89,7 +80,7 @@ public class ButtonController : MonoBehaviour
         //    // Play sound effect 
         //    AudioSource.PlayClipAtPoint(click, camPos);
         //}
-        SceneManager.LoadScene("HighScores");
+       // SceneManager.LoadScene("HighScores");
     }
     public void Back()
     {
@@ -100,7 +91,7 @@ public class ButtonController : MonoBehaviour
         //    // Play sound effect 
         //    AudioSource.PlayClipAtPoint(click, camPos);
         //}
-        SceneManager.LoadScene("MainMenu");
+      //  SceneManager.LoadScene("Main Menu");
     }
 
 
