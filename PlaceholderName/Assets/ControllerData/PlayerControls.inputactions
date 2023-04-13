@@ -40,6 +40,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Dodge",
+                    "type": "Button",
+                    "id": "47964c51-6ec8-450c-89d2-1e551a16010f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -89,12 +98,12 @@
                 },
                 {
                     "name": "",
-                    "id": "230b62e7-a68c-4cc2-aad2-8cdbd4e96444",
-                    "path": "<Keyboard>/space",
+                    "id": "1524f914-c7f7-4655-b5f7-3df818e81386",
+                    "path": "<XInputController>/leftTrigger",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SwitchWeapons",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

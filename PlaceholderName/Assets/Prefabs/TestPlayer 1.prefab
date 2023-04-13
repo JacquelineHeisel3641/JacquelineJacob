@@ -137,8 +137,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 300
   bulletSpeed: 10
+  dodgeSpeed: 250
   isPlayer2: 0
   bulletSpawn: {fileID: 3506838046894419043}
+  reticle: {fileID: 3506838048107804756}
   mainCamera: {fileID: 0}
 --- !u!50 &3506838047793440276
 Rigidbody2D:
@@ -173,7 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58616089a3b88014a9c4187eb0cf5509, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangedWeapon: {fileID: 11400000, guid: 88cdd0bd3e080ba49a9c39761745bec0, type: 2}
   bulletPrefab: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
   basicBullet: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
   reflectorBullet: {fileID: 4077064475750173004, guid: fc278313a5076e14fa803b5fe5bf7d15, type: 3}

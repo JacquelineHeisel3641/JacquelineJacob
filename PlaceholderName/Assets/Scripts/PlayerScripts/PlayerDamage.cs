@@ -32,16 +32,20 @@ public class PlayerDamage : MonoBehaviour
     /// deals. </param>
     public void TakeDamage(int damageTaken)
     {
-        health -= damageTaken;
-
-        //Executes if a player is dead.
-        if(health <= 0)
+        //Makes sure that the player is not in their immunity phase from dodge.
+        if (gameObject.GetComponent<PlayerMovement>().isDashing == false)
         {
-            //Sets boolean if a player is dead.
-            enemyController.GetComponent<EnemyController>().SetPlayerToDestroyed
-                (gameObject.GetComponent<PlayerMovement>().isPlayer2);
+            health -= damageTaken;
 
-            Destroy(gameObject);
+            //Executes if a player is dead.
+            if (health <= 0)
+            {
+                //Sets boolean if a player is dead.
+                enemyController.GetComponent<EnemyController>().SetPlayerToDestroyed
+                    (gameObject.GetComponent<PlayerMovement>().isPlayer2);
+
+                Destroy(gameObject);
+            }
         }
     }
 }

@@ -16,6 +16,8 @@ public class DialogueController : MonoBehaviour
     public GameObject dialogue3;
     public GameObject dialogue4;
 
+    private GameObject mainCamera;
+
     private GameObject[] startDialogue = new GameObject[4];
 
     /// <summary>
@@ -28,6 +30,8 @@ public class DialogueController : MonoBehaviour
         startDialogue[2] = dialogue3;
         startDialogue[3] = dialogue4;
 
+        mainCamera = GameObject.Find("Main Camera");
+
         StartCoroutine("DialogueTimer");
     }
 
@@ -38,7 +42,7 @@ public class DialogueController : MonoBehaviour
     private IEnumerator DialogueTimer()
     {
         //Runs 4 times.
-        for (int dialogueCounter = 0; dialogueCounter <= 4; dialogueCounter++)
+        for (int dialogueCounter = 0; dialogueCounter <= 3; dialogueCounter++)
         {
             //Sets next dialogue to active.
             startDialogue[dialogueCounter].SetActive(true);
@@ -52,5 +56,7 @@ public class DialogueController : MonoBehaviour
             //Disables current dialogue.
             startDialogue[dialogueCounter].SetActive(false);
         }
+
+        mainCamera.GetComponent<AudioSource>().enabled = true;
     }
 }
