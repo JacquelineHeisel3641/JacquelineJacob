@@ -49,14 +49,19 @@ public class EnemySpawnerBehavior : MonoBehaviour
         StartCoroutine("EnemySpawns");
     }
 
+    private void Update()
+    {
+        secondsToWait = gameController.GetComponent<GameController>().SecondsToWait;
+        amountToSpawn = gameController.GetComponent<GameController>().AmountToSpawn;
+    }
+
     /// <summary>
     /// Spawns enemies on spawn points this script is attached to.
     /// </summary>
     /// <returns></returns>
     private IEnumerator EnemySpawns()
     {
-        secondsToWait = gameController.GetComponent<GameController>().SecondsToWait;
-        amountToSpawn = gameController.GetComponent<GameController>().AmountToSpawn;
+
 
         for (; ; )
         {

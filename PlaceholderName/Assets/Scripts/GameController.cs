@@ -13,12 +13,12 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    private float secondsToWait = 10f;
+    [SerializeField]private float secondsToWait = 10f;
     [SerializeField] private float secondsDecreaser = 0.5f;
 
-    private int timeActive = 0;
-    private int amountToSpawn = 1;
-    private int previousThreshold = 30;
+    [SerializeField]private int timeActive = 0;
+    [SerializeField]private int amountToSpawn = 1;
+    private int threshold = 30;
 
     private bool increaseAmountSpawning = false;
 
@@ -63,13 +63,13 @@ public class GameController : MonoBehaviour
             //When this condition is met, enemy spawn rate will increase. Every
             //other time this condition is met, the amount of enemies that spawn
             //will be increased up to 4.
-            if (previousThreshold == timeActive / 2)
+            if (threshold == timeActive)
             {
                 //Sets a new previousThreshold so that scaling will repeat.
-                previousThreshold = timeActive;
+                threshold += 30;
 
                 //Changes amount of time in-between spawns.
-                if (SecondsToWait > 0.5f)
+                if (SecondsToWait > 1f)
                 {
                     SecondsToWait -= secondsDecreaser;
                 }
@@ -90,73 +90,4 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
     }
-
-    /// <summary>
-    /// Gets which room the player is entering then calls a function.
-    /// </summary>
-    /*public void WhichSpawnersToActive()
-    {
-        switch(leadPlayer.GetComponent<PlayerMovement>().RoomEntering)
-        {
-            case "Room1SpawnTrigger":
-                ActivateSpawners(0);
-                break;
-            case "Room2SpawnTrigger":
-                ActivateSpawners(1);
-                break;
-        }
-    }
-
-    /// <summary>
-    /// Gets which room the player is exiting then calls a function.
-    /// </summary>
-    public void WhichSpawnersToDeactivate()
-    {
-        switch (leadPlayer.GetComponent<PlayerMovement>().RoomExiting)
-        {
-            case "Room1SpawnTrigger":
-                DeactivateSpawners(0);
-                break;
-            case "Room2SpawnTrigger":
-                DeactivateSpawners(1);
-                break;
-        }
-    }
-
-    /// <summary>
-    /// Activates all spawners in the room the player is entering.
-    /// </summary>
-    /// <param name="posInArray"> Keeps track of which slot is being accessed in 
-    /// array. </param>
-    private void ActivateSpawners(int posInArray)
-    {
-        for(int i = allSpawners[posInArray].Length; i > 0; i--)
-        {
-            allSpawners[posInArray][i - 1].SetActive(true);
-        }
-    }
-
-    /// <summary>
-    /// Deactivates all spawners in the room the player is exiting.
-    /// </summary>
-    /// <param name="posInArray"> Keeps track of which slot is being accessed in 
-    /// array. </param>
-    private void DeactivateSpawners(int posInArray)
-    {
-        for(int i = allSpawners[posInArray].Length; i > 0; i--)
-        {
-            allSpawners[posInArray][i - 1].SetActive(false);
-        }
-    }*/
-
-
-    /// <summary>
-    /// Gets the lead player from TestLeadPlayerAssigning and sets leadPlayer to it.
-    /// </summary>
-    /// <param name="player"> The player passed in from TestLeadPlayerAssigning. 
-    /// </param>
-   /* public void LeadPlayerIs(GameObject player)
-    {
-        leadPlayer = player;
-    }*/
 }

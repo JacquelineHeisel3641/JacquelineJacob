@@ -4,17 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Wall
+  - Bullet
   - Enemy
-  - Player1
-  - Player2
-<<<<<<< HEAD
   - Room1Spawner
   - Room2Spawner
-  - Room3Spawner
-=======
-  - Bullet
->>>>>>> main
+  - Player1
+  - Player2
+  - Wall
   layers:
   - Default
   - TransparentFX
