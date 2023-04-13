@@ -34,6 +34,8 @@ public class TurretBehavior : MonoBehaviour
         {
             followingPlayer1 = false;
         }
+
+        InvokeRepeating("FireBullets", 0f, 0.5f);
     }
 
     private void FixedUpdate()
@@ -42,7 +44,7 @@ public class TurretBehavior : MonoBehaviour
         {
             Vector3 vectorToTarget = player1.transform.position - transform.position;
 
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg /*- rotationModifier*/;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
 
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -52,7 +54,7 @@ public class TurretBehavior : MonoBehaviour
         {
             Vector3 vectorToTarget = player2.transform.position - transform.position;
 
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg /*- rotationModifier*/;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
 
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
 
@@ -60,8 +62,6 @@ public class TurretBehavior : MonoBehaviour
         }
 
         laserSpawnPos = laserSpawn.transform;
-
-        InvokeRepeating("FireBullets", 0f, 0.5f);
     }
 
     private void FireBullets()
