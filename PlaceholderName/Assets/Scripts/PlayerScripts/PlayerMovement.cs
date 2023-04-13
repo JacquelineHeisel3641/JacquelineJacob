@@ -6,6 +6,7 @@
 // Brief Description : Handles player movement, bullet instantiating, and player 
 // rotation.
 *****************************************************************************/
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,8 +23,11 @@ public class PlayerMovement : MonoBehaviour
     private float angle;
     [SerializeReference] private float playerSpeed = 300f;
     [SerializeField] private float bulletSpeed = 100f;
+    [SerializeField] private float dodgeSpeed;
 
     public bool isPlayer2 = false;
+    public bool isDashing = false;
+    private bool finishedDashing = false;
 
     Vector2 movement;
     Vector2 rotation;
@@ -33,7 +37,7 @@ public class PlayerMovement : MonoBehaviour
     private GameObject bullet;
     [SerializeField] private GameObject bulletSpawn;
     private GameObject currPlayer;
-    private GameObject reticle;
+    public GameObject reticle;
     private GameObject gameController;
 
     public GameObject mainCamera;
@@ -43,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction inputMovement;
     private InputAction inputRotate;
     private InputAction shoot;
+    private InputAction dodge;
 
     public string RoomEntering { get => roomEntering; set => roomEntering = value; }
     public string RoomExiting { get => roomExiting; set => roomExiting = value; }
@@ -62,10 +67,11 @@ public class PlayerMovement : MonoBehaviour
         inputMovement = inputMap.FindAction("Movement");
         inputRotate = inputMap.FindAction("Rotate");
         shoot = inputMap.FindAction("Shoot");
+        dodge = inputMap.FindAction("Dodge");
 
         //Used to assign variables to access the reticle.
-        currPlayer = gameObject;
-        reticle = currPlayer.transform.Find("TestReticle").gameObject;
+        //currPlayer = gameObject;
+        //reticle = currPlayer.transform.Find("TestReticle").gameObject;
 
         rb2D = gameObject.GetComponent<Rigidbody2D>();
 
@@ -82,8 +88,47 @@ public class PlayerMovement : MonoBehaviour
         //Executes function responsible for spawning bullets.
         shoot.performed += context => Shoot();
 
+        //Executes function responsible for dodging.
+        dodge.performed += context => StartCoroutine("Dodge");
+
         //Sets a variable to access the main camera.
         mainCamera = GameObject.Find("Main Camera");
+    }
+
+    /// <summary>
+    /// Increases playerSpeed and lets the player dash forward.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Dodge()
+    {
+        //Limits the distance the player can dodge by limiting the time the
+        //speed boost is in effect.
+        for(int i = 1; i > 0; i--, finishedDashing = true)
+        {
+            if (isDashing == false)
+            {
+                isDashing = true;
+
+                playerSpeed += dodgeSpeed;
+
+                yield return new WaitForSeconds(0.2f);
+            }
+        }
+
+        //Executes once the dodge has run its course. Reverts playerSpeed and stops
+        //the coroutine, also enables the dodge action, which is disabled while the
+        //dodge is being performed.
+        if(isDashing == true && finishedDashing == true)
+        {
+            playerSpeed -= dodgeSpeed;
+
+            isDashing = false;
+            finishedDashing = false;
+
+            dodge.Enable();
+
+            StopCoroutine("Dodge");
+        }
     }
 
     /// <summary>
@@ -115,6 +160,11 @@ public class PlayerMovement : MonoBehaviour
         //Gets the active bullet prefab every frame to make sure it is up to date.
         bullet = GetComponent<ActiveWeaponBehavior>().bulletPrefab;
         bulletSpawnPos = bulletSpawn.transform;
+
+        if(isDashing)
+        {
+            dodge.Disable();
+        }
     }
 
     /// <summary>

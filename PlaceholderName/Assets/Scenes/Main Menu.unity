@@ -738,7 +738,7 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: "Right Trigger: Shoot\r\nLeft Stick: Rotate\r\nRight Stick: Move\r\nY:
-    Switch Weapons \r\nX: Interact/Open Doors\r\nA: Dodge"
+    Switch Weapons \r\nX: Interact/Open Doors\r\nLeft Trigger: Dodge"
 --- !u!222 &514465915
 CanvasRenderer:
   m_ObjectHideFlags: 0
