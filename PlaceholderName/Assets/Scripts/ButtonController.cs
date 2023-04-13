@@ -43,6 +43,7 @@ public class ButtonController : MonoBehaviour
         //}
         // SceneManager.LoadScene("Quit Screen");
         Application.Quit();
+        Debug.Log("bye bye");
     }
 
     /// <summary>
