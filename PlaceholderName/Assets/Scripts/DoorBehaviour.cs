@@ -48,7 +48,14 @@ public class DoorBehaviour : MonoBehaviour
 
         doorOpen.Enable();
         door1Unlocked = false;
-    }
+
+      // door1Unlocked = false;
+       door2Unlocked = false;
+       door3Unlocked = false; 
+       door4Unlocked = false;
+       door5Unlocked = false; 
+       door6Unlocked = false; 
+}
 
     private void DoorOpen_canceled(InputAction.CallbackContext obj)
     {
@@ -61,10 +68,9 @@ public class DoorBehaviour : MonoBehaviour
     /// <param name="obj"></param>
     private void DoorOpen_started(InputAction.CallbackContext obj)
     {
-        if (EnemyController.amountOfEnemies == 0)
-        {
+        
             UnlockDoor();
-        }
+        
         
     }
 

@@ -30,7 +30,7 @@ public class InstructionsController : MonoBehaviour
         doorOpen.Enable();
 
         instructionsText.text = "Left stick = move, Right stick = Rotate, " +
-            "A = open door ";
+            "X = open door ";
     }
     private void DoorOpen_started(InputAction.CallbackContext obj)
     {
@@ -42,7 +42,8 @@ public class InstructionsController : MonoBehaviour
     {
         if (DoorBehaviour.door1Unlocked)
         {
-            instructionsText.text = "Right trigger = shoot, Use the squares as" +
+            instructionsText.text = "Right trigger = shoot, Y = switch weaspons" +
+                " Use the squares as" +
                 " target practice";
         }
         else if (DoorBehaviour.door2Unlocked)
