@@ -22,9 +22,11 @@ public class BreadBehaviour : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Executes if the collision is an enemy.
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.
+            CompareTag("Turret"))
         {
-            collision.gameObject.GetComponent<DamageEnemyScript>().TakeDamage(damage);
+            collision.gameObject.GetComponent<DamageEnemyScript>().TakeDamage
+                (damage);
 
             
         }

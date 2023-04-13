@@ -54,7 +54,8 @@ public class ReflectorBulletBehavior : MonoBehaviour
             }
         }
 
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.
+            CompareTag("Turret"))
         {
             collision.gameObject.GetComponent<DamageEnemyScript>().TakeDamage(damage);
 

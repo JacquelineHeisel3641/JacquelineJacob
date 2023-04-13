@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name :         Room2.cs
+// Author :            Jacob Bateman
+// Creation Date :     April 12, 2023
+//
+// Brief Description : Handles activation and deactivation of turrets and enemy 
+// spawn points in the room this script handles.
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +16,10 @@ public class Room2 : MonoBehaviour
 
     public GameObject[] turrets = new GameObject[1];
 
+    /// <summary>
+    /// Activates all turrets and spawn points in the room the player is entering.
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player1"))
@@ -24,6 +36,10 @@ public class Room2 : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Deactivates all turrets and spawn points in the room the player is entering.
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player1"))
