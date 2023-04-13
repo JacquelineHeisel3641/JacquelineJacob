@@ -1,3 +1,10 @@
+/*****************************************************************************
+// File Name :         ButtonController.cs
+// Author :            Jacqueline Heisel
+// Creation Date :     April 6, 2023
+//
+// Brief Description : Has the funtions for all buttons in the game
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,23 +13,10 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-   // public AudioClip newGame;
-    //public AudioClip click;
-
-    //public Text soundStatus;
-    //  public Text musicStatus;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+ 
+    /// <summary>
+    /// not functional yet, but will eventually play sound effects
+    /// </summary>
     public void PlaySound()
     {
         Vector3 camPos = Camera.main.transform.position;
@@ -33,6 +27,9 @@ public class ButtonController : MonoBehaviour
         //}
     }
 
+    /// <summary>
+    /// Quits the game when clicked
+    /// </summary>
     public void QuitButton()
     {
 
@@ -45,6 +42,10 @@ public class ButtonController : MonoBehaviour
         // SceneManager.LoadScene("Quit Screen");
         Application.Quit();
     }
+
+    /// <summary>
+    /// Takes to an instructions page
+    /// </summary>
     public void Help()
     {
         Vector3 camPos = Camera.main.transform.position;
@@ -53,9 +54,13 @@ public class ButtonController : MonoBehaviour
         //    // Play sound effect 
         //    AudioSource.PlayClipAtPoint(click, camPos);
         //}
-        SceneManager.LoadScene("Instructions");
+       // SceneManager.LoadScene("Instructions");
         Debug.Log("sound please");
     }
+
+    /// <summary>
+    /// Goes to the next scene - tutorial
+    /// </summary>
     public void NewGame()
     {
 
@@ -68,6 +73,10 @@ public class ButtonController : MonoBehaviour
         //}
         SceneManager.LoadScene("Tutorial Level");
     }
+
+    /// <summary>
+    /// goes to the level 1 scene
+    /// </summary>
     public void Level1()
     {
 
@@ -80,6 +89,10 @@ public class ButtonController : MonoBehaviour
         //}
         SceneManager.LoadScene("Level 1");
     }
+
+    /// <summary>
+    /// not functional yet - will go to the settings page
+    /// </summary>
     public void HighScores()
     {
 
@@ -89,8 +102,12 @@ public class ButtonController : MonoBehaviour
         //    // Play sound effect 
         //    AudioSource.PlayClipAtPoint(click, camPos);
         //}
-        SceneManager.LoadScene("HighScores");
+       // SceneManager.LoadScene("HighScores");
     }
+
+    /// <summary>
+    /// not functional yet - will go back to the previous scene
+    /// </summary>
     public void Back()
     {
 
@@ -100,7 +117,7 @@ public class ButtonController : MonoBehaviour
         //    // Play sound effect 
         //    AudioSource.PlayClipAtPoint(click, camPos);
         //}
-        SceneManager.LoadScene("MainMenu");
+      //  SceneManager.LoadScene("Main Menu");
     }
 
 
