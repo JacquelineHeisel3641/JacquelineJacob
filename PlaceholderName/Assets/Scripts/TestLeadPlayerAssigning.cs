@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         TestLeadPlayerAssigning.cs
 // Author :            Jacob Bateman
-// Creation Date :     4/6/2023
+// Creation Date :     April 6, 2023
 //
 // Brief Description : Assigns the lead player and sets the camera to follow them.
 *****************************************************************************/
@@ -41,6 +41,11 @@ public class TestLeadPlayerAssigning : MonoBehaviour
         if (leadPlayerAssigned == false)
         {
             leadPlayer = player;
+
+            /*if (leadPlayerAssigned == false)
+            {
+                gameObject.GetComponent<GameController>().LeadPlayerIs(leadPlayer);
+            }*/
 
             leadPlayerAssigned = true;
         }

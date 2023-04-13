@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         ReflectorBulletBehavior.cs
 // Author :            Jacob Bateman
-// Creation Date :     4/6/2023
+// Creation Date :     April 6, 2023
 //
 // Brief Description : Handles functions related to the reflector's bullet behavior.
 *****************************************************************************/
@@ -14,7 +14,7 @@ public class ReflectorBulletBehavior : MonoBehaviour
     [SerializeField] private int damage;
     [SerializeField] private float speed = 10f;
 
-    private int wallCollisions = 0;
+    [SerializeField]private int wallCollisions = 0;
 
     private float rotationSpeed = 500f;
 
@@ -37,20 +37,6 @@ public class ReflectorBulletBehavior : MonoBehaviour
     }
 
     /// <summary>
-    /// Destroys bullet on contact with an enemy after dealing damage.
-    /// </summary>
-    /// <param name="collision"></param>
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Enemy"))
-        {
-            collision.gameObject.GetComponent<DamageEnemyScript>().TakeDamage(damage);
-
-            Destroy(gameObject);
-        }
-    }
-
-    /// <summary>
     /// Destroys bullet on third collision with a wall.
     /// </summary>
     /// <param name="collision"></param>
@@ -66,6 +52,13 @@ public class ReflectorBulletBehavior : MonoBehaviour
             {
                 wallCollisions++;
             }
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<DamageEnemyScript>().TakeDamage(damage);
+
+            Destroy(gameObject);
         }
     }
 }

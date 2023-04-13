@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: -4331400867307001736}
   - component: {fileID: -371111868173601943}
   - component: {fileID: 7814098267779955022}
+  - component: {fileID: -2539771905967307066}
   m_Layer: 0
   m_Name: TestPlayer 1
   m_TagString: Untagged
@@ -136,6 +137,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 300
   bulletSpeed: 10
+  isPlayer2: 0
   bulletSpawn: {fileID: 3506838046894419043}
   mainCamera: {fileID: 0}
 --- !u!50 &3506838047793440276
@@ -175,7 +177,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
   basicBullet: {fileID: 3280988401183057456, guid: 884a0bc5a2865ab4791998f0954cf41f, type: 3}
   reflectorBullet: {fileID: 4077064475750173004, guid: fc278313a5076e14fa803b5fe5bf7d15, type: 3}
-  bazookaBullet: {fileID: 0}
+  bazookaBullet: {fileID: 1768100416019761381, guid: cbfa78d7ff09a6243b85e5a9c8e8d335, type: 3}
 --- !u!58 &-371111868173601943
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -262,6 +264,20 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerActions
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &-2539771905967307066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3506838047793440264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1062745713e4ecb49aa8707dbeeab2f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  enemyController: {fileID: 0}
 --- !u!1 &3506838048107804756
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,9 +350,9 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.40392157}
+  m_Color: {r: 0.8396226, g: 0.8396226, b: 0.8396226, a: 0.40392157}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

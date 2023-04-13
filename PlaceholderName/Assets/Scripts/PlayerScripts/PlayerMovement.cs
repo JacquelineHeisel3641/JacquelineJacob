@@ -1,7 +1,7 @@
 /*****************************************************************************
 // File Name :         PlayerMovement.cs
 // Author :            Jacob Bateman
-// Creation Date :     4/6/2023
+// Creation Date :     April 6, 2023
 //
 // Brief Description : Handles player movement, bullet instantiating, and player 
 // rotation.
@@ -16,11 +16,14 @@ public class PlayerMovement : MonoBehaviour
     InputActionAsset inputAsset;
     InputActionMap inputMap;
 
+    private string roomEntering;
+    private string roomExiting;
+
     private float angle;
     [SerializeReference] private float playerSpeed = 300f;
     [SerializeField] private float bulletSpeed = 100f;
 
-    private bool isPlayer2 = false;
+    public bool isPlayer2 = false;
 
     Vector2 movement;
     Vector2 rotation;
@@ -31,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject bulletSpawn;
     private GameObject currPlayer;
     private GameObject reticle;
+    private GameObject gameController;
 
     public GameObject mainCamera;
 
@@ -39,6 +43,9 @@ public class PlayerMovement : MonoBehaviour
     private InputAction inputMovement;
     private InputAction inputRotate;
     private InputAction shoot;
+
+    public string RoomEntering { get => roomEntering; set => roomEntering = value; }
+    public string RoomExiting { get => roomExiting; set => roomExiting = value; }
 
     /// <summary>
     /// Activates player actions.
@@ -79,12 +86,17 @@ public class PlayerMovement : MonoBehaviour
         mainCamera = GameObject.Find("Main Camera");
     }
 
+    /// <summary>
+    /// Sets up important variables and assigns the player's tag.
+    /// </summary>
     private void Start()
     {
         //If this is the first player spawned, assigns lead player status to them,
         //otherwise does nothing.
         mainCamera.GetComponent<TestLeadPlayerAssigning>().LeadPlayerAssigner
             (gameObject);
+
+        gameController = GameObject.Find("GameController");
 
         AssignPlayerTags();
     }
@@ -125,13 +137,18 @@ public class PlayerMovement : MonoBehaviour
     /// </summary>
     private void AssignPlayerTags()
     {
-        if(isPlayer2)
+        if(gameController.GetComponent
+                <PlayerAssignerController>().isPlayer2)
         {
             gameObject.tag = "Player2";
         }
         else
         {
             gameObject.tag = "Player1";
+
+            gameController.GetComponent<PlayerAssignerController>()
+                .AssignBoolean();
+
         }
     }
 
