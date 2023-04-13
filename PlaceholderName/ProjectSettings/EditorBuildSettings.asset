@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tutorial Level.unity
     guid: 667351bbae2d40a45adbf9beb4ae15da
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Main Menu.unity
     guid: c868da2136d62a74089cff13437a7d76
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Level 1.unity
     guid: 5bb34e8c6dc6a894e9c30902eb78725b
+  - enabled: 1
+    path: Assets/Scenes/JacobScene.unity
+    guid: db9bbb44bd2d1bb42b7ab1963b1c6a86
   m_configObjects: {}
