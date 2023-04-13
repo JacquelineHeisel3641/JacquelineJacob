@@ -139,11 +139,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player1: {fileID: 0}
   player2: {fileID: 0}
-  turretLaser: {fileID: 0}
+  turretLaser: {fileID: 1855967855650791387, guid: 8d7989cf0f4258245a63457e128a231f, type: 3}
   laserSpawn: {fileID: 0}
-  speed: 10
-  rotationModifier: 0
-  laserSpeed: 0
+  speed: 4
+  rotationModifier: 90
+  laserSpeed: 10
 --- !u!1 &8315853266180848309
 GameObject:
   m_ObjectHideFlags: 0
