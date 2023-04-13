@@ -13,6 +13,8 @@ using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
+    public GameObject instructionPage;
+    private bool instructionsOpen = false;
  
     /// <summary>
     /// not functional yet, but will eventually play sound effects
@@ -49,6 +51,14 @@ public class ButtonController : MonoBehaviour
     public void Help()
     {
         Vector3 camPos = Camera.main.transform.position;
+
+        if(instructionsOpen != true)
+        {
+            instructionPage.SetActive(true);
+            instructionsOpen = true;
+        }
+        
+        
         //if (AudioController.soundEffectsOn)
         //{
         //    // Play sound effect 
@@ -112,12 +122,18 @@ public class ButtonController : MonoBehaviour
     {
 
         Vector3 camPos = Camera.main.transform.position;
+
+        if (instructionsOpen)
+        {
+            instructionPage.SetActive(false);
+            instructionsOpen = false;
+        }
         //if (AudioController.soundEffectsOn)
         //{
         //    // Play sound effect 
         //    AudioSource.PlayClipAtPoint(click, camPos);
         //}
-      //  SceneManager.LoadScene("Main Menu");
+        //  SceneManager.LoadScene("Main Menu");
     }
 
 
