@@ -39,7 +39,9 @@ public class ZombieBehavior : MonoBehaviour
         //Decides which player the enemy will initially follow.
         followDecider = Random.Range(0, 2);
 
-        if(followDecider >= 0 && followDecider < 1)
+        AssignPlayers();
+
+        if (followDecider >= 0 && followDecider < 1)
         {
             followingPlayer1 = true;
         }
@@ -48,7 +50,7 @@ public class ZombieBehavior : MonoBehaviour
             followingPlayer1 = false;
         }
 
-        AssignPlayers();
+
 
         //Reference for EnemyController.
         enemyController = GameObject.Find("EnemyController");
