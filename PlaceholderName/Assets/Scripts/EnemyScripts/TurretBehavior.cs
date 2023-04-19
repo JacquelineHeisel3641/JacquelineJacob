@@ -48,8 +48,6 @@ public class TurretBehavior : MonoBehaviour
         {
             followingPlayer1 = false;
         }
-
-        InvokeRepeating("FireBullets", 0f, fireRate);
     }
 
     /// <summary>
@@ -86,9 +84,17 @@ public class TurretBehavior : MonoBehaviour
     }
 
     /// <summary>
+    /// Allows the rooms to activate the turrets firing function properly.
+    /// </summary>
+    public void StartFiring()
+    {
+        InvokeRepeating("FireBullets", 0f, fireRate);
+    }
+
+    /// <summary>
     /// Fires bullets.
     /// </summary>
-    private void FireBullets()
+    public void FireBullets()
     {
         //Bullet spawns at the location of the laserSpawn GameObject, which is a
         //child of the turret. The direction it travels is determined by the

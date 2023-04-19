@@ -20,13 +20,14 @@ public class ZombieBehavior : MonoBehaviour
 
     private bool followingPlayer1;
 
-    private bool player1Destroyed = false;
-    private bool player2Destroyed = false;
+    public bool player1Destroyed = false;
+    public bool player2Destroyed = false;
 
     public GameObject player1;
     public GameObject player2;
 
     public GameObject enemyController;
+    public GameObject gameController;
 
     Vector3 playerPos;
 
@@ -38,6 +39,8 @@ public class ZombieBehavior : MonoBehaviour
     {
         //Decides which player the enemy will initially follow.
         followDecider = Random.Range(0, 2);
+
+        gameController = GameObject.Find("GameController");
 
         AssignPlayers();
 
@@ -77,17 +80,30 @@ public class ZombieBehavior : MonoBehaviour
             followingPlayer1 = true;
         }
 
+        player1Destroyed = gameController.GetComponent<PlayerAssignerController>()
+            .player1Dead;
+
+        player2Destroyed = gameController.GetComponent<PlayerAssignerController>()
+            .player2Dead;
+
         //Moves the enemy depending on which player it is following.
-        if (followingPlayer1)
+        if (followingPlayer1 && player1Destroyed == false)
         {
             Vector3 playerPos = player1.transform.position;
 
             transform.position = Vector3.MoveTowards(transform.position, playerPos,
                 speed * Time.deltaTime);
         }
-        else
+        else if(player2Destroyed == false)
         {
             Vector3 playerPos = player2.transform.position;
+
+            transform.position = Vector3.MoveTowards(transform.position, playerPos,
+                speed * Time.deltaTime);
+        }
+        else
+        {
+            Vector3 playerPos = player1.transform.position;
 
             transform.position = Vector3.MoveTowards(transform.position, playerPos,
                 speed * Time.deltaTime);
