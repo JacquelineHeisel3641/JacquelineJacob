@@ -216,7 +216,10 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        StartCoroutine("InvisibleTeleportTimer");
+        if(gameObject.CompareTag("Player2"))
+        {
+            StartCoroutine("InvisibleTeleportTimer");
+        }
     }
 
     private IEnumerator InvisibleTeleportTimer()

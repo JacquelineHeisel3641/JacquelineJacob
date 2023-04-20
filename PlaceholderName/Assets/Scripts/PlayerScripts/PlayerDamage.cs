@@ -41,8 +41,8 @@ public class PlayerDamage : MonoBehaviour
             if (health <= 0)
             {
                 //Sets boolean if a player is dead.
-                enemyController.GetComponent<EnemyController>().SetPlayerToDestroyed
-                    (gameObject.GetComponent<PlayerMovement>().isPlayer2);
+                /*enemyController.GetComponent<EnemyController>().SetPlayerToDestroyed
+                    (gameObject.GetComponent<PlayerMovement>().isPlayer2);*/
 
                 if(gameObject.CompareTag("Player1"))
                 {

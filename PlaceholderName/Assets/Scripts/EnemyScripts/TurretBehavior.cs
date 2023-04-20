@@ -38,16 +38,6 @@ public class TurretBehavior : MonoBehaviour
         followDecider = Random.Range(0, 2);
 
         AssignPlayers();
-
-        //Decides which player will be targeted.
-        if (followDecider >= 0 && followDecider < 1)
-        {
-            followingPlayer1 = true;
-        }
-        else
-        {
-            followingPlayer1 = false;
-        }
     }
 
     /// <summary>
@@ -55,32 +45,66 @@ public class TurretBehavior : MonoBehaviour
     /// </summary>
     private void FixedUpdate()
     {
+        //Calculates the distance between the enemy and player 1.
+        float distanceToP1 = Vector3.Distance(player1.transform.position,
+            gameObject.transform.position);
+
+        //Executes if player2 is active.
+        if (player2 != null)
+        {
+            //Calculates distance between player2 and the enemy.
+            float distanceToP2 = Vector3.Distance(player2.transform.position,
+                gameObject.transform.position);
+
+            //Determines which player is closest.
+            if (distanceToP1 > distanceToP2)
+            {
+                followingPlayer1 = true;
+            }
+            else if (distanceToP2 > distanceToP1)
+            {
+                followingPlayer1 = false;
+            }
+        }
+
+        //Executes if at least player1 is active.
+        else if (player1 != null)
+        {
+            followingPlayer1 = true;
+        }
+
         if (followingPlayer1)
         {
             //Gets a position to target.
-            Vector3 vectorToTarget = player1.transform.position - transform.position;
+            Vector3 vectorToTarget = player1.transform.position - transform.
+                position;
 
             //Calculates the angle to rotate.
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * 
+                Mathf.Rad2Deg - rotationModifier;
 
             //Rotates.
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, 
+                Time.deltaTime * speed);
         }
         else
         {
             //Gets a position to target.
-            Vector3 vectorToTarget = player2.transform.position - transform.position;
+            Vector3 vectorToTarget = player2.transform.position - transform.
+                position;
 
             //Calculates the angle to rotate.
-            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg - rotationModifier;
+            float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.
+                Rad2Deg - rotationModifier;
 
             //Rotates.
             Quaternion q = Quaternion.AngleAxis(angle, Vector3.forward);
-            transform.rotation = Quaternion.Slerp(transform.rotation, q, Time.deltaTime * speed);
+            transform.rotation = Quaternion.Slerp(transform.rotation, q, 
+                Time.deltaTime * speed);
         }
 
-        laserSpawnPos = laserSpawn.transform;
+        laserSpawnPos = gameObject.transform.GetChild(0);
     }
 
     /// <summary>
@@ -96,11 +120,16 @@ public class TurretBehavior : MonoBehaviour
     /// </summary>
     public void FireBullets()
     {
+        if(laserSpawnPos.rotation == null)
+        {
+            Debug.Log("NULL");
+        }
+
         //Bullet spawns at the location of the laserSpawn GameObject, which is a
         //child of the turret. The direction it travels is determined by the
         //rotation of the turret.
-        var spawnedBullet = Instantiate(turretLaser, laserSpawn.transform.position,
-            laserSpawnPos.rotation);
+        var spawnedBullet = Instantiate(turretLaser, laserSpawnPos.transform.
+            position, laserSpawnPos.rotation);
         spawnedBullet.GetComponent<Rigidbody2D>().velocity = laserSpawnPos.up
             * laserSpeed;
     }

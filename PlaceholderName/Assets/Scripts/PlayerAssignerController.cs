@@ -34,12 +34,18 @@ public class PlayerAssignerController : MonoBehaviour
 
     public void Player1DiedAssigner()
     {
-        GameObject.FindGameObjectWithTag("Player2").GetComponent<PlayerMovement>
-            ().isPlayer2 = false;
-        GameObject.FindGameObjectWithTag("Player2").tag = "Player1";
+        GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
 
-        player1Dead = true;
-        isPlayer2 = false;
+        if(player2 != null)
+        {
+
+            player2.GetComponent<PlayerMovement>
+                ().isPlayer2 = false;
+            GameObject.FindGameObjectWithTag("Player2").tag = "Player1";
+
+            player1Dead = true;
+            isPlayer2 = false;
+        }
     }
 
     public void Player2DiedAssigner()

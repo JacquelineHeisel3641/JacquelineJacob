@@ -47,7 +47,7 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    public void SetPlayerToDestroyed(bool isPlayer2)
+    /*public void SetPlayerToDestroyed(bool isPlayer2)
     {
         if(isPlayer2)
         {
@@ -57,5 +57,5 @@ public class EnemyController : MonoBehaviour
         {
             player1Destroyed = true;
         }
-    }
+    }*/
 }
