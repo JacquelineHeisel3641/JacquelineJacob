@@ -11,7 +11,11 @@ TagManager:
   - Player1
   - Player2
   - Wall
+<<<<<<< HEAD
   - Turret
+=======
+  - Target
+>>>>>>> PleaseDon'tBeBroken-BreadWeapon
   layers:
   - Default
   - TransparentFX
@@ -48,4 +52,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Button
+    uniqueID: 899809633
     locked: 0
