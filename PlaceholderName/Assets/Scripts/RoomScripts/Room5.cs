@@ -16,6 +16,11 @@ public class Room5 : MonoBehaviour
 
     public GameObject[] turrets = new GameObject[7];
 
+    public GameObject mainCamera;
+    public GameObject franticMusic;
+
+    private bool entered = false;
+
     /// <summary>
     /// Activates all turrets and spawn points in the room the player is entering.
     /// </summary>
@@ -24,6 +29,13 @@ public class Room5 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
+            if (entered == false)
+            {
+                mainCamera.GetComponent<AudioSource>().enabled = false;
+
+                franticMusic.SetActive(true);
+            }
+
             for (int i = spawners.Length; i > 0; i--)
             {
                 spawners[i - 1].SetActive(true);
@@ -32,6 +44,12 @@ public class Room5 : MonoBehaviour
             for (int i = turrets.Length; i > 0; i--)
             {
                 turrets[i - 1].SetActive(true);
+
+                if (turrets[i - 1].GetComponent<DamageEnemyScript>().turretDead ==
+                    false)
+                {
+                    turrets[i - 1].GetComponent<TurretBehavior>().StartFiring();
+                }
             }
         }
     }
@@ -51,7 +69,10 @@ public class Room5 : MonoBehaviour
 
             for (int i = turrets.Length; i > 0; i--)
             {
-                turrets[i - 1].SetActive(true);
+                turrets[i - 1].GetComponent<TurretBehavior>().CancelInvoke
+                    ("FireBullets");
+
+                turrets[i - 1].SetActive(false);
             }
         }
     }

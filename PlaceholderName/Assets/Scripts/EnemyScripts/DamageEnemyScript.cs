@@ -14,6 +14,8 @@ public class DamageEnemyScript : MonoBehaviour
 {
     [SerializeField] private int health;
 
+    public bool turretDead = false;
+
     /// <summary>
     /// Decreases enemy health and destroys the enemy health
     /// </summary>
@@ -25,7 +27,20 @@ public class DamageEnemyScript : MonoBehaviour
 
         if (health <= 0)
         {
-            Destroy(gameObject);
+            if (gameObject.CompareTag("Turret"))
+            {
+                gameObject.GetComponent<TurretBehavior>().CancelInvoke(
+                    "FireBullets");
+
+                turretDead = true;
+
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                gameObject.GetComponent<CircleCollider2D>().enabled = false;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

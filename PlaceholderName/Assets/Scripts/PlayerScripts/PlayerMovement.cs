@@ -214,6 +214,29 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
 
+    private void OnBecameInvisible()
+    {
+        if(gameObject.CompareTag("Player2"))
+        {
+            StartCoroutine("InvisibleTeleportTimer");
+        }
+    }
+
+    private IEnumerator InvisibleTeleportTimer()
+    {
+        for(int i = 5; i > 0; i--)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        Vector3 spawnPos = GameObject.Find("SpawnPoint").transform.position;
+        spawnPos.z += 10;
+
+        transform.position = spawnPos;
+
+        StopCoroutine("InvisibleTeleportTimer");
+    }
+
     /// <summary>
     /// Enables and disables the input map.
     /// </summary>
