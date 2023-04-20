@@ -2657,6 +2657,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
       objectReference: {fileID: 326854498}
@@ -2735,6 +2739,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -2903,6 +2911,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -13279,6 +13291,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
       objectReference: {fileID: 1760212282}
@@ -13367,6 +13383,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -13575,6 +13595,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -14879,6 +14903,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 312100425364091273, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -18992,6 +19024,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
       objectReference: {fileID: 842490494}
@@ -19239,6 +19275,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -20306,6 +20346,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -35830,6 +35874,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
       objectReference: {fileID: 1042863434}
@@ -35913,6 +35961,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: fireRate
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: laserSpawn
       value: 
@@ -36309,6 +36361,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 458583460}
     m_Modifications:
+    - target: {fileID: 312100425364091273, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2681530318904074752, guid: bccc61334bcb71c49b3bd774b02d8ad1, type: 3}
       propertyPath: fireRate
       value: 0.5
