@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
+
 
 public class ButtonController : MonoBehaviour
 {
@@ -128,6 +130,7 @@ public class ButtonController : MonoBehaviour
         {
             instructionPage.SetActive(false);
             instructionsOpen = false;
+            
         }
         //if (AudioController.soundEffectsOn)
         //{
