@@ -18,17 +18,17 @@ public class DialogueController : MonoBehaviour
 
     private GameObject mainCamera;
 
-    private GameObject[] startDialogue = new GameObject[4];
+    public GameObject[] startDialogue = new GameObject[4];
 
     /// <summary>
     /// Adds dialogue GameObjects to array. Starts playing dialogue coroutine.
     /// </summary>
     private void Start()
     {
-        startDialogue[0] = dialogue1;
+        /*startDialogue[0] = dialogue1;
         startDialogue[1] = dialogue2;
         startDialogue[2] = dialogue3;
-        startDialogue[3] = dialogue4;
+        startDialogue[3] = dialogue4;*/
 
         mainCamera = GameObject.Find("Main Camera");
 

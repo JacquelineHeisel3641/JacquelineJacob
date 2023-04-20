@@ -10,6 +10,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class GameController : MonoBehaviour
     private int threshold = 30;
 
     private bool increaseAmountSpawning = false;
+    private bool startChecking = false;
 
     public GameObject leadPlayer;
 
