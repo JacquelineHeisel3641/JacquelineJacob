@@ -39,5 +39,9 @@ public class turretBulletBehavior : MonoBehaviour
 
             Destroy(gameObject);
         }
+        else if(collision.gameObject.CompareTag("Turret"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

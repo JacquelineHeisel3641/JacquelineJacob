@@ -29,6 +29,7 @@ public class Room5 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
+            //Switches music for level to frantic once player approaches the end.
             if (entered == false)
             {
                 mainCamera.GetComponent<AudioSource>().enabled = false;
