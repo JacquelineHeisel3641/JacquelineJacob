@@ -62,6 +62,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Pause Menu "",
+                    ""type"": ""Button"",
+                    ""id"": ""56fb3815-cf50-457f-9ece-7c854321ca3b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -119,6 +128,17 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""SwitchWeapons"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""361be7af-bdd0-42b7-8ee6-e17bca889eb7"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause Menu "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -131,6 +151,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_PlayerActions_Rotate = m_PlayerActions.FindAction("Rotate", throwIfNotFound: true);
         m_PlayerActions_Shoot = m_PlayerActions.FindAction("Shoot", throwIfNotFound: true);
         m_PlayerActions_SwitchWeapons = m_PlayerActions.FindAction("SwitchWeapons", throwIfNotFound: true);
+        m_PlayerActions_PauseMenu = m_PlayerActions.FindAction("Pause Menu ", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -194,6 +215,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Rotate;
     private readonly InputAction m_PlayerActions_Shoot;
     private readonly InputAction m_PlayerActions_SwitchWeapons;
+    private readonly InputAction m_PlayerActions_PauseMenu;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -202,6 +224,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Rotate => m_Wrapper.m_PlayerActions_Rotate;
         public InputAction @Shoot => m_Wrapper.m_PlayerActions_Shoot;
         public InputAction @SwitchWeapons => m_Wrapper.m_PlayerActions_SwitchWeapons;
+        public InputAction @PauseMenu => m_Wrapper.m_PlayerActions_PauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -223,6 +246,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwitchWeapons.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchWeapons;
                 @SwitchWeapons.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchWeapons;
                 @SwitchWeapons.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnSwitchWeapons;
+                @PauseMenu.started -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.performed -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.canceled -= m_Wrapper.m_PlayerActionsActionsCallbackInterface.OnPauseMenu;
             }
             m_Wrapper.m_PlayerActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -239,6 +265,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @SwitchWeapons.started += instance.OnSwitchWeapons;
                 @SwitchWeapons.performed += instance.OnSwitchWeapons;
                 @SwitchWeapons.canceled += instance.OnSwitchWeapons;
+                @PauseMenu.started += instance.OnPauseMenu;
+                @PauseMenu.performed += instance.OnPauseMenu;
+                @PauseMenu.canceled += instance.OnPauseMenu;
             }
         }
     }
@@ -249,5 +278,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnRotate(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
         void OnSwitchWeapons(InputAction.CallbackContext context);
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
 }
