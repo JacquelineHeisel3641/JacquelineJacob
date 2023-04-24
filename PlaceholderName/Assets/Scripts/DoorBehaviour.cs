@@ -31,6 +31,7 @@ public class DoorBehaviour : MonoBehaviour
     public GameObject door5TileMap;
     public GameObject door6TileMap;
 
+
     // 
     public InputAction doorOpen;
     private InputAction player;

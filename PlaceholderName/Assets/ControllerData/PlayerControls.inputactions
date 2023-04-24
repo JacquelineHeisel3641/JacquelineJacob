@@ -42,9 +42,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Dodge",
+                    "name": "Pause Menu ",
                     "type": "Button",
-                    "id": "47964c51-6ec8-450c-89d2-1e551a16010f",
+                    "id": "56fb3815-cf50-457f-9ece-7c854321ca3b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -98,12 +98,23 @@
                 },
                 {
                     "name": "",
-                    "id": "1524f914-c7f7-4655-b5f7-3df818e81386",
-                    "path": "<XInputController>/leftTrigger",
+                    "id": "230b62e7-a68c-4cc2-aad2-8cdbd4e96444",
+                    "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Dodge",
+                    "action": "SwitchWeapons",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "361be7af-bdd0-42b7-8ee6-e17bca889eb7",
+                    "path": "<XInputController>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause Menu ",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
