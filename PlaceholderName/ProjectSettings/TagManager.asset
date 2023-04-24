@@ -4,14 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Bullet
+  - Wall
   - Enemy
+  - Turret
   - Room1Spawner
   - Room2Spawner
   - Player1
   - Player2
-  - Wall
-  - Target
   layers:
   - Default
   - TransparentFX
@@ -48,7 +47,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Button
-    uniqueID: 899809633
     locked: 0

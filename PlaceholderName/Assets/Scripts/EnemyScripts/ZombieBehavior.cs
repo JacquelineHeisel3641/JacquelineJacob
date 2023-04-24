@@ -17,16 +17,18 @@ public class ZombieBehavior : MonoBehaviour
 
     [SerializeField] private float speed;
     private float followDecider;
+    private float distanceToP1;
 
     private bool followingPlayer1;
 
-    private bool player1Destroyed = false;
-    private bool player2Destroyed = false;
+    public bool player1Destroyed = false;
+    public bool player2Destroyed = false;
 
     public GameObject player1;
     public GameObject player2;
 
     public GameObject enemyController;
+    public GameObject gameController;
 
     Vector3 playerPos;
 
@@ -39,21 +41,29 @@ public class ZombieBehavior : MonoBehaviour
         //Decides which player the enemy will initially follow.
         followDecider = Random.Range(0, 2);
 
-        AssignPlayers();
+        gameController = GameObject.Find("GameController");
 
-        if (followDecider >= 0 && followDecider < 1)
-        {
-            followingPlayer1 = true;
-        }
-        else
-        {
-            followingPlayer1 = false;
-        }
-
-
+        StartCoroutine("AssignPlayers");
 
         //Reference for EnemyController.
         enemyController = GameObject.Find("EnemyController");
+
+        if (player1 != null)
+        {
+            //Calculates the distance between the enemy and player 1.
+            distanceToP1 = Vector3.Distance(player1.transform.position,
+                gameObject.transform.position);
+        }
+
+        //Executes if player2 is active.
+        if (player2 != null)
+        {
+            //Calculates distance between player2 and the enemy.
+            float distanceToP2 = Vector3.Distance(player2.transform.position,
+                gameObject.transform.position);
+        }
+
+        StartCoroutine("FollowDecider");
     }
 
     /// <summary>
@@ -61,32 +71,27 @@ public class ZombieBehavior : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        //Sets booleans to tell whether a player has been destroyed.
-        player1Destroyed = enemyController.GetComponent<EnemyController>().
-            player1Destroyed;
-        player2Destroyed = enemyController.GetComponent<EnemyController>().
-            player2Destroyed;
-
-        //Detects whether a player has been destroyed.
-        if (player1Destroyed)
+        if (player1 != null)
         {
-            followingPlayer1 = false;
-        }
-        else if(player2Destroyed)
-        {
-            followingPlayer1 = true;
+            //Calculates the distance between the enemy and player 1.
+            distanceToP1 = Vector3.Distance(player1.transform.position,
+                gameObject.transform.position);
         }
 
-        //Moves the enemy depending on which player it is following.
-        if (followingPlayer1)
+
+
+        //Executes code based off the value of followingPlayer1.
+        if(followingPlayer1)
         {
+            //Moves the enemy toward player1.
             Vector3 playerPos = player1.transform.position;
 
             transform.position = Vector3.MoveTowards(transform.position, playerPos,
                 speed * Time.deltaTime);
         }
-        else
+        else if(followingPlayer1 == false)
         {
+            //Moves the enemy toward player2.
             Vector3 playerPos = player2.transform.position;
 
             transform.position = Vector3.MoveTowards(transform.position, playerPos,
@@ -94,14 +99,50 @@ public class ZombieBehavior : MonoBehaviour
         }
     }
 
+    private IEnumerator FollowDecider()
+    {
+        for (; ; )
+        {
+            //Executes if player2 is active.
+            if (player2 != null)
+            {
+                //Calculates distance between player2 and the enemy.
+                float distanceToP2 = Vector3.Distance(player2.transform.position,
+                    gameObject.transform.position);
+
+                //Determines which player is closest, then moves toward them.
+                if (distanceToP1 > distanceToP2)
+                {
+                    followingPlayer1 = true;
+                }
+                else if (distanceToP2 > distanceToP1)
+                {
+                    followingPlayer1 = false;
+                }
+            }
+            //Executes if at least player1 is active.
+            else if (player1 != null)
+            {
+                followingPlayer1 = true;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
     /// <summary>
     /// Assigns reference to players 1 and 2 by finding an object with their 
     /// respective tags.
     /// </summary>
-    private void AssignPlayers()
+    private IEnumerator AssignPlayers()
     {
-        player1 = GameObject.FindWithTag("Player1");
-        player2 = GameObject.FindWithTag("Player2");
+        for (; ; )
+        {
+            player1 = GameObject.FindWithTag("Player1");
+            player2 = GameObject.FindWithTag("Player2");
+
+            yield return new WaitForSeconds(0.25f);
+        }
     }
 
     /// <summary>
@@ -117,20 +158,4 @@ public class ZombieBehavior : MonoBehaviour
                 (damageDealt);
         }
     }
-
-    /*private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.gameObject.CompareTag("Player1"))
-        {
-            followingPlayer1 = true;
-        }
-        else if(collision.gameObject.CompareTag("Player2"))
-        {
-            followingPlayer1 = false;
-        }
-        else if(collision.gameObject.CompareTag("Wall"))
-        {
-
-        }
-    }*/
 }

@@ -46,7 +46,7 @@ public class EnemySpawnerBehavior : MonoBehaviour
 
         gameController = GameObject.Find("GameController");
 
-        StartCoroutine("EnemySpawns");
+        //StartCoroutine("EnemySpawns");
     }
 
     private void Update()
@@ -69,6 +69,8 @@ public class EnemySpawnerBehavior : MonoBehaviour
             //amountToSpawn.
             switch(amountToSpawn)
             {
+                case 0:
+                    break;
                 case 1:
                     Instantiate(zombie, spawnPos1, Quaternion.identity);
                     break;
@@ -93,5 +95,13 @@ public class EnemySpawnerBehavior : MonoBehaviour
         }
     }
 
+    private void OnEnable()
+    {
+        StartCoroutine("EnemySpawns");
+    }
 
+    private void OnDisable()
+    {
+        StopCoroutine("EnemySpawns");
+    }
 }

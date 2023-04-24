@@ -20,8 +20,6 @@ public class ActiveWeaponBehavior : MonoBehaviour
 
     private int activeBulletPrefab = 0;
 
-    public RangedWeaponData rangedWeapon;
-
     public GameObject bulletPrefab;
 
     [SerializeField] private GameObject basicBullet;

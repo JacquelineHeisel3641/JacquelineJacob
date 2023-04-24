@@ -156,9 +156,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageDealt: 100
   speed: 2
+  player1Destroyed: 0
+  player2Destroyed: 0
   player1: {fileID: 0}
   player2: {fileID: 0}
   enemyController: {fileID: 0}
+  gameController: {fileID: 0}
 --- !u!114 &8318876349339473630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,3 +175,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 11
+  turretDead: 0

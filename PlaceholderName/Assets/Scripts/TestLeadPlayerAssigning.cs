@@ -34,20 +34,21 @@ public class TestLeadPlayerAssigning : MonoBehaviour
     /// <summary>
     /// Assigns the lead player.
     /// </summary>
-    /// <param name="player"></param>
-    public void LeadPlayerAssigner(GameObject player)
+    /// <param name="player"> Takes a player as input. </param>
+    /// <param name="deathCall"> Boolean to determine whether it is being called on 
+    /// player death. </param>
+    public void LeadPlayerAssigner(GameObject player, bool deathCall)
     {
         //Triggers if leadPlayer is not assigned.
         if (leadPlayerAssigned == false)
         {
             leadPlayer = player;
 
-            /*if (leadPlayerAssigned == false)
-            {
-                gameObject.GetComponent<GameController>().LeadPlayerIs(leadPlayer);
-            }*/
-
             leadPlayerAssigned = true;
+        }
+        else if(deathCall)
+        {
+            leadPlayer = player;
         }
     }
 }

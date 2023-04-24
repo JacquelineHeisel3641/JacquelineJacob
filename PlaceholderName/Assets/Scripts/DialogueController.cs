@@ -16,17 +16,21 @@ public class DialogueController : MonoBehaviour
     public GameObject dialogue3;
     public GameObject dialogue4;
 
-    private GameObject[] startDialogue = new GameObject[4];
+    private GameObject mainCamera;
+
+    public GameObject[] startDialogue = new GameObject[5];
 
     /// <summary>
     /// Adds dialogue GameObjects to array. Starts playing dialogue coroutine.
     /// </summary>
     private void Start()
     {
-        startDialogue[0] = dialogue1;
+        /*startDialogue[0] = dialogue1;
         startDialogue[1] = dialogue2;
         startDialogue[2] = dialogue3;
-        startDialogue[3] = dialogue4;
+        startDialogue[3] = dialogue4;*/
+
+        mainCamera = GameObject.Find("Main Camera");
 
         StartCoroutine("DialogueTimer");
     }
@@ -52,5 +56,7 @@ public class DialogueController : MonoBehaviour
             //Disables current dialogue.
             startDialogue[dialogueCounter].SetActive(false);
         }
+
+        mainCamera.GetComponent<AudioSource>().enabled = true;
     }
 }
