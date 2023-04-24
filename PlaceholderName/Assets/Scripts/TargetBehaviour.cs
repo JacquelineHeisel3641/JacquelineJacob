@@ -22,4 +22,26 @@ public class TargetBehaviour : MonoBehaviour
     {
         // if hit by item with bullet tag, destory this object 
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
+        if (collision.gameObject.tag == "Bullet")
+        {
+            Vector3 camPos = Camera.main.transform.position;
+            if (AudioController.soundEffectsOn)
+            {
+                // Play sound effect 
+                //  AudioSource.PlayClipAtPoint(Munch, camPos);
+            }
+
+
+            Debug.Log("target hit");
+
+            Destroy(this.gameObject);
+
+
+        }
+    }
 }
+

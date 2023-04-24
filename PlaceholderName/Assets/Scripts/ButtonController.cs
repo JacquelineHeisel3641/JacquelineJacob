@@ -17,18 +17,20 @@ public class ButtonController : MonoBehaviour
 {
     public GameObject instructionPage;
     private bool instructionsOpen = false;
- 
+    public AudioClip click;
+    public AudioClip newGame;
+
     /// <summary>
     /// not functional yet, but will eventually play sound effects
     /// </summary>
     public void PlaySound()
     {
         Vector3 camPos = Camera.main.transform.position;
-        //if (AudioController.soundEffectsOn)
-        //{
-        //    // Play sound effect 
-        //    AudioSource.PlayClipAtPoint(click, camPos);
-        //}
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
     }
 
     /// <summary>
@@ -38,11 +40,11 @@ public class ButtonController : MonoBehaviour
     {
 
         Vector3 camPos = Camera.main.transform.position;
-        //if (AudioController.soundEffectsOn)
-        //{
-        //    // Play sound effect 
-        //    AudioSource.PlayClipAtPoint(click, camPos);
-        //}
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
         // SceneManager.LoadScene("Quit Screen");
         Application.Quit();
         Debug.Log("bye bye");
@@ -60,14 +62,14 @@ public class ButtonController : MonoBehaviour
             instructionPage.SetActive(true);
             instructionsOpen = true;
         }
-        
-        
-        //if (AudioController.soundEffectsOn)
-        //{
-        //    // Play sound effect 
-        //    AudioSource.PlayClipAtPoint(click, camPos);
-        //}
-       // SceneManager.LoadScene("Instructions");
+
+
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
+        // SceneManager.LoadScene("Instructions");
         Debug.Log("sound please");
     }
 
@@ -80,10 +82,10 @@ public class ButtonController : MonoBehaviour
         // find camera position 
         Vector3 camPos = Camera.main.transform.position;
 
-        //if (AudioController.soundEffectsOn)
-        //{
-        //    AudioSource.PlayClipAtPoint(newGame, camPos);
-        //}
+        if (AudioController.soundEffectsOn)
+        {
+            AudioSource.PlayClipAtPoint(newGame, camPos);
+        }
         SceneManager.LoadScene("Tutorial Level");
     }
 
@@ -96,10 +98,10 @@ public class ButtonController : MonoBehaviour
         // find camera position 
         Vector3 camPos = Camera.main.transform.position;
 
-        //if (AudioController.soundEffectsOn)
-        //{
-        //    AudioSource.PlayClipAtPoint(newGame, camPos);
-        //}
+        if (AudioController.soundEffectsOn)
+        {
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
         SceneManager.LoadScene("Level 1");
     }
 
@@ -110,18 +112,43 @@ public class ButtonController : MonoBehaviour
     {
 
         Vector3 camPos = Camera.main.transform.position;
-        //if (AudioController.soundEffectsOn)
-        //{
-        //    // Play sound effect 
-        //    AudioSource.PlayClipAtPoint(click, camPos);
-        //}
-       // SceneManager.LoadScene("HighScores");
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
+        // SceneManager.LoadScene("HighScores");
+    }
+    public void Settings()
+    {
+
+        Vector3 camPos = Camera.main.transform.position;
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
+        // SceneManager.LoadScene("HighScores");
+        SceneManager.LoadScene("Settings");
+    }
+    public void Back()
+    {
+
+        Vector3 camPos = Camera.main.transform.position;
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
+        // SceneManager.LoadScene("HighScores");
+        SceneManager.LoadScene("Main Menu");
     }
 
     /// <summary>
     /// not functional yet - will go back to the previous scene
     /// </summary>
-    public void Back()
+    public void CloseInstructions()
     {
 
         Vector3 camPos = Camera.main.transform.position;
@@ -132,11 +159,11 @@ public class ButtonController : MonoBehaviour
             instructionsOpen = false;
             
         }
-        //if (AudioController.soundEffectsOn)
-        //{
-        //    // Play sound effect 
-        //    AudioSource.PlayClipAtPoint(click, camPos);
-        //}
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+            AudioSource.PlayClipAtPoint(click, camPos);
+        }
         //  SceneManager.LoadScene("Main Menu");
     }
 
