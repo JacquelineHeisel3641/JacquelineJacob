@@ -139,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
         //If this is the first player spawned, assigns lead player status to them,
         //otherwise does nothing.
         mainCamera.GetComponent<TestLeadPlayerAssigning>().LeadPlayerAssigner
-            (gameObject);
+            (gameObject, false);
 
         gameController = GameObject.Find("GameController");
 
@@ -191,13 +191,16 @@ public class PlayerMovement : MonoBehaviour
                 <PlayerAssignerController>().isPlayer2)
         {
             gameObject.tag = "Player2";
+
+            gameController.GetComponent<PlayerAssignerController>().AssignBoolean
+                (gameObject);
         }
         else
         {
             gameObject.tag = "Player1";
 
             gameController.GetComponent<PlayerAssignerController>()
-                .AssignBoolean();
+                .AssignBoolean(gameObject);
 
         }
     }
@@ -214,13 +217,13 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
 
-    private void OnBecameInvisible()
+    /*private void OnBecameInvisible()
     {
         if(gameObject.CompareTag("Player2"))
         {
             StartCoroutine("InvisibleTeleportTimer");
         }
-    }
+    }*/
 
     private IEnumerator InvisibleTeleportTimer()
     {
@@ -248,5 +251,25 @@ public class PlayerMovement : MonoBehaviour
     private void OnDisable()
     {
         inputMap.Disable();
+    }
+
+    private void OnDestroy()
+    {
+        if(gameObject.CompareTag("Player1"))
+        {
+            gameController.GetComponent<PlayerAssignerController>().
+                Player1DiedAssigner();
+
+            gameController.GetComponent<GameController>().StartCoroutine
+                ("RespawnTimer");
+        }
+        else if(gameObject.CompareTag("Player2"))
+        {
+            gameController.GetComponent<PlayerAssignerController>().
+                Player2DiedAssigner();
+
+            gameController.GetComponent<GameController>().StartCoroutine
+                ("RespawnTimer");
+        }
     }
 }

@@ -16,40 +16,41 @@ public class PlayerAssignerController : MonoBehaviour
     public bool player1Dead = true;
     public bool player2Dead = true;
 
+    public GameObject player1;
+    public GameObject player2;
+
+    public GameObject mainCamera;
+
     /// <summary>
     /// Sets isPlayer2 to true once player 1 has spawned in.
     /// </summary>
-    public void AssignBoolean()
+    public void AssignBoolean(GameObject player)
     {
         if(isPlayer2 == false)
         {
             isPlayer2 = true;
-            player1Dead = false;
+            //player1Dead = false;
+
+            player1 = player;
         }
         else
         {
-            player2Dead = false;
+            //player2Dead = false;
+
+            player2 = player;
         }
     }
 
     public void Player1DiedAssigner()
     {
-        GameObject player2 = GameObject.FindGameObjectWithTag("Player2");
+        player2.tag = "Player1";
 
-        if(player2 != null)
-        {
-
-            player2.GetComponent<PlayerMovement>
-                ().isPlayer2 = false;
-            GameObject.FindGameObjectWithTag("Player2").tag = "Player1";
-
-            player1Dead = true;
-            isPlayer2 = false;
-        }
+        mainCamera.GetComponent<TestLeadPlayerAssigning>().
+            LeadPlayerAssigner(player2, true);
     }
 
     public void Player2DiedAssigner()
     {
-        player2Dead = true;
+        
     }
 }

@@ -18,7 +18,7 @@ public class DialogueController : MonoBehaviour
 
     private GameObject mainCamera;
 
-    public GameObject[] startDialogue = new GameObject[4];
+    public GameObject[] startDialogue = new GameObject[5];
 
     /// <summary>
     /// Adds dialogue GameObjects to array. Starts playing dialogue coroutine.
@@ -42,7 +42,7 @@ public class DialogueController : MonoBehaviour
     private IEnumerator DialogueTimer()
     {
         //Runs 4 times.
-        for (int dialogueCounter = 0; dialogueCounter <= 3; dialogueCounter++)
+        for (int dialogueCounter = 0; dialogueCounter <= 4; dialogueCounter++)
         {
             //Sets next dialogue to active.
             startDialogue[dialogueCounter].SetActive(true);
