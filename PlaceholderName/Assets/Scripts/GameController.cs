@@ -10,6 +10,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameController : MonoBehaviour
 {
@@ -17,12 +19,19 @@ public class GameController : MonoBehaviour
     [SerializeField] private float secondsDecreaser = 0.5f;
 
     [SerializeField]private int timeActive = 0;
-    [SerializeField]private int amountToSpawn = 1;
+    [SerializeField]private int amountToSpawn = 0;
     private int threshold = 30;
 
     private bool increaseAmountSpawning = false;
+    private bool startChecking = false;
 
     public GameObject leadPlayer;
+    public GameObject playerPrefab;
+
+    public GameObject initialSpawnLoc;
+
+    public GameObject respawnPlayer;
+    public GameObject mainCamera;
 
     private GameObject[] room1Spawners;
     private GameObject[] room2Spawners;
@@ -38,13 +47,12 @@ public class GameController : MonoBehaviour
     /// </summary>
     private void Start()
     {
-        StartCoroutine("GameTimer");
+        StartCoroutine("CheckForStart");
+    }
 
-        /*GameObject[] room1Spawners = GameObject.FindGameObjectsWithTag
-            ("Room1Spawner");
-
-        GameObject[] room2Spawners = GameObject.FindGameObjectsWithTag
-            ("Room2Spawner");*/
+    private void Update()
+    {
+        leadPlayer = mainCamera.GetComponent<TestLeadPlayerAssigning>().leadPlayer;
     }
 
     /// <summary>
@@ -89,5 +97,37 @@ public class GameController : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
         }
+    }
+
+    private IEnumerator CheckForStart()
+    {
+        for (; ; )
+        {
+            if(GetComponent<PlayerAssignerController>().player1 != null && 
+                GetComponent<PlayerAssignerController>().player2 != null)
+            {
+                break;
+            }
+
+            yield return new WaitForSeconds(1f);
+        }
+
+        StartCoroutine("GameTimer");
+
+        AmountToSpawn = 1;
+    }
+
+    private IEnumerator RespawnTimer()
+    {
+        for(int i = 10; i > 0; i--)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        GameObject currPlayer = Instantiate(respawnPlayer, transform.position, 
+            Quaternion.identity);
+
+        currPlayer.transform.position = GameObject.FindGameObjectWithTag("Player1")
+            .transform.position;
     }
 }

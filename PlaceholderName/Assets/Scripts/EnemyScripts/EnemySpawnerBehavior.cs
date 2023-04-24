@@ -69,6 +69,8 @@ public class EnemySpawnerBehavior : MonoBehaviour
             //amountToSpawn.
             switch(amountToSpawn)
             {
+                case 0:
+                    break;
                 case 1:
                     Instantiate(zombie, spawnPos1, Quaternion.identity);
                     break;
