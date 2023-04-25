@@ -253,6 +253,10 @@ public class PlayerMovement : MonoBehaviour
         inputMap.Disable();
     }
 
+    /// <summary>
+    /// When a player dies, starts a respawn countdown and, if player 1 dies, 
+    /// then player 2 becomes player 1.
+    /// </summary>
     private void OnDestroy()
     {
         if(gameObject.CompareTag("Player1"))
