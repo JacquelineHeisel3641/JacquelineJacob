@@ -17,6 +17,7 @@ public class TimmyBehavior : MonoBehaviour
 
     [SerializeField] private float speed;
     private float followDecider;
+    private float distanceToP1;
 
     private bool followingPlayer1;
 
@@ -46,16 +47,13 @@ public class TimmyBehavior : MonoBehaviour
 
         //Reference for EnemyController.
         enemyController = GameObject.Find("EnemyController");
-    }
 
-    /// <summary>
-    /// Handles this enemy's movement.
-    /// </summary>
-    private void Update()
-    {
-        //Calculates the distance between the enemy and player 1.
-        float distanceToP1 = Vector3.Distance(player1.transform.position,
-            gameObject.transform.position);
+        if (player1 != null)
+        {
+            //Calculates the distance between the enemy and player 1.
+            distanceToP1 = Vector3.Distance(player1.transform.position,
+                gameObject.transform.position);
+        }
 
         //Executes if player2 is active.
         if (player2 != null)
@@ -63,22 +61,24 @@ public class TimmyBehavior : MonoBehaviour
             //Calculates distance between player2 and the enemy.
             float distanceToP2 = Vector3.Distance(player2.transform.position,
                 gameObject.transform.position);
+        }
 
-            //Determines which player is closest, then moves toward them.
-            if (distanceToP1 > distanceToP2)
-            {
-                followingPlayer1 = true;
-            }
-            else if (distanceToP2 > distanceToP1)
-            {
-                followingPlayer1 = false;
-            }
-        }
-        //Executes if at least player1 is active.
-        else if (player1 != null)
+        StartCoroutine("FollowDecider");
+    }
+
+    /// <summary>
+    /// Handles this enemy's movement.
+    /// </summary>
+    private void Update()
+    {
+        if (player1 != null)
         {
-            followingPlayer1 = true;
+            //Calculates the distance between the enemy and player 1.
+            distanceToP1 = Vector3.Distance(player1.transform.position,
+                gameObject.transform.position);
         }
+
+
 
         //Executes code based off the value of followingPlayer1.
         if (followingPlayer1)
@@ -96,6 +96,37 @@ public class TimmyBehavior : MonoBehaviour
 
             transform.position = Vector3.MoveTowards(transform.position, playerPos,
                 speed * Time.deltaTime);
+        }
+    }
+
+    private IEnumerator FollowDecider()
+    {
+        for (; ; )
+        {
+            //Executes if player2 is active.
+            if (player2 != null)
+            {
+                //Calculates distance between player2 and the enemy.
+                float distanceToP2 = Vector3.Distance(player2.transform.position,
+                    gameObject.transform.position);
+
+                //Determines which player is closest, then moves toward them.
+                if (distanceToP1 > distanceToP2)
+                {
+                    followingPlayer1 = true;
+                }
+                else if (distanceToP2 > distanceToP1)
+                {
+                    followingPlayer1 = false;
+                }
+            }
+            //Executes if at least player1 is active.
+            else if (player1 != null)
+            {
+                followingPlayer1 = true;
+            }
+
+            yield return new WaitForSeconds(1f);
         }
     }
 

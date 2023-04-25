@@ -12,8 +12,15 @@ using UnityEngine;
 public class TestLeadPlayerAssigning : MonoBehaviour
 {
     public GameObject leadPlayer;
+    public GameObject player1;
+    public GameObject player2;
 
     private bool leadPlayerAssigned = false;
+
+    [SerializeField] private float cameraScale = 3;
+
+    private Vector3 player1Pos;
+    private Vector3 player2Pos;
 
     /// <summary>
     /// Makes camera follow the lead player by accessing the lead player's position 
@@ -21,14 +28,40 @@ public class TestLeadPlayerAssigning : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (leadPlayerAssigned)
+        if (player2 == null)
         {
-            // Makes camera follow the lead player by accessing the lead player's position 
-            // through the leadPlayer GameObject.
-            gameObject.transform.position = new Vector3(leadPlayer.transform.
-                position.x, leadPlayer.transform.position.y, 
-                leadPlayer.transform.position.z - 10);
+            if (leadPlayer != null)
+            {
+                // Makes camera follow the lead player by accessing the lead player's
+                // position through the leadPlayer GameObject.
+                gameObject.transform.position = new Vector3(leadPlayer.transform.
+                    position.x, leadPlayer.transform.position.y,
+                    leadPlayer.transform.position.z - 10);
+            }
         }
+        else
+        {
+            player1Pos = player1.transform.position;
+            player2Pos = player2.transform.position;
+
+            transform.position = new Vector3((player1Pos.x + player2Pos.y) / 2, 
+                (player1Pos.y + player2Pos.y) / 2, -5);
+        }
+
+        if(player2 != null)
+        {
+            if (Vector3.Distance(player1Pos, player2Pos) > 1)
+            {
+                GetComponent<Camera>().orthographicSize = Vector3.Distance(player1Pos, player2Pos) - 1f;
+            }
+            else
+            {
+                GetComponent<Camera>().orthographicSize = 5;
+            }
+        }
+
+     
+
     }
 
     /// <summary>
@@ -44,11 +77,19 @@ public class TestLeadPlayerAssigning : MonoBehaviour
         {
             leadPlayer = player;
 
+            player1 = player;
+
             leadPlayerAssigned = true;
         }
-        else if(deathCall)
+        else if (leadPlayerAssigned == true && !deathCall)
+        {
+            player2 = player;
+        }
+        else if (deathCall)
         {
             leadPlayer = player;
+
+            player1 = player;
         }
     }
 }

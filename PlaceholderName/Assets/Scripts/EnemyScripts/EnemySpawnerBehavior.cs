@@ -17,6 +17,7 @@ public class EnemySpawnerBehavior : MonoBehaviour
     private int amountToSpawn;
 
     public GameObject zombie;
+    public GameObject timmy;
 
     //Points of enemy spawn to facilitate higher spawning amounts.
     public GameObject spawnLoc1;
@@ -81,13 +82,13 @@ public class EnemySpawnerBehavior : MonoBehaviour
                 case 3:
                     Instantiate(zombie, spawnPos1, Quaternion.identity);
                     Instantiate(zombie, spawnPos2, Quaternion.identity);
-                    Instantiate(zombie, spawnPos3, Quaternion.identity);
+                    Instantiate(timmy, spawnPos3, Quaternion.identity);
                     break;
                 case 4:
                     Instantiate(zombie, spawnPos1, Quaternion.identity);
                     Instantiate(zombie, spawnPos2, Quaternion.identity);
-                    Instantiate(zombie, spawnPos3, Quaternion.identity);
-                    Instantiate(zombie, spawnPos4, Quaternion.identity);
+                    Instantiate(timmy, spawnPos3, Quaternion.identity);
+                    Instantiate(timmy, spawnPos4, Quaternion.identity);
                     break;
             }
 
