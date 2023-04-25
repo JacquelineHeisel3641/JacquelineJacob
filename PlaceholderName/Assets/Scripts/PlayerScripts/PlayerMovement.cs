@@ -146,13 +146,14 @@ public class PlayerMovement : MonoBehaviour
 
         AssignPlayerTags();
 
+        //Spawns the player in proper position depending on the scene they are in.
         if(SceneManager.GetActiveScene().name == "Tutorial Level")
         {
             transform.position = new Vector2(-5.17f, 4.24f);
         }
         else if(SceneManager.GetActiveScene().name == "Level 1")
         {
-            transform.position = new Vector2()
+            transform.position = new Vector2(-3.75f, 2f);
         }
     }
 

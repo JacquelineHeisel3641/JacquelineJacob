@@ -44,26 +44,36 @@ public class TestLeadPlayerAssigning : MonoBehaviour
             player1Pos = player1.transform.position;
             player2Pos = player2.transform.position;
 
+            //Sets the camera's position to the midpoint of the distance between
+            //players. (Using midpoint formula: (p1x + p2x)/2, (p1y + p2y)/2.)
             transform.position = new Vector3((player1Pos.x + player2Pos.y) / 2, 
                 (player1Pos.y + player2Pos.y) / 2, -5);
         }
 
+        //Controls the camera scaling.
         if(player2 != null)
         {
+            //Makes sure that the camera viewport size will not be smaller than 5.
             if (Vector3.Distance(player1Pos, player2Pos) > 5)
             {
-                if(Vector3.Distance(player1Pos, player2Pos) - 3 > 5)
+                //Makes sure that the camera viewport size will not be smaller than
+                //5 while using the scaling formula.
+                if(Vector3.Distance(player1Pos, player2Pos) - 4.3f > 5)
                 {
+                    //Scales the camera viewport size based off how far the players
+                    //are from each other.
                     GetComponent<Camera>().orthographicSize = Vector3.Distance
-                        (player1Pos, player2Pos) - 3f;
+                        (player1Pos, player2Pos) - 4.3f;
                 }
                 else
                 {
+                    //Default viewport size.
                     GetComponent<Camera>().orthographicSize = 5f;
                 }
             }
             else
             {
+                //Default viewport size.
                 GetComponent<Camera>().orthographicSize = 5f;
             }
         }

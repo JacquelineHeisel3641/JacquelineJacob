@@ -62,8 +62,6 @@ public class EnemySpawnerBehavior : MonoBehaviour
     /// <returns></returns>
     private IEnumerator EnemySpawns()
     {
-
-
         for (; ; )
         {
             //Controls how many enemies are spawning at a time based off of
