@@ -50,18 +50,23 @@ public class TestLeadPlayerAssigning : MonoBehaviour
 
         if(player2 != null)
         {
-            if (Vector3.Distance(player1Pos, player2Pos) > 1)
+            if (Vector3.Distance(player1Pos, player2Pos) > 5)
             {
-                GetComponent<Camera>().orthographicSize = Vector3.Distance(player1Pos, player2Pos) - 1f;
+                if(Vector3.Distance(player1Pos, player2Pos) - 3 > 5)
+                {
+                    GetComponent<Camera>().orthographicSize = Vector3.Distance
+                        (player1Pos, player2Pos) - 3f;
+                }
+                else
+                {
+                    GetComponent<Camera>().orthographicSize = 5f;
+                }
             }
             else
             {
-                GetComponent<Camera>().orthographicSize = 5;
+                GetComponent<Camera>().orthographicSize = 5f;
             }
         }
-
-     
-
     }
 
     /// <summary>
