@@ -19,6 +19,7 @@ public class ButtonController : MonoBehaviour
     private bool instructionsOpen = false;
     public AudioClip click;
     public AudioClip newGame;
+    public GameObject pauseMenu;
 
     /// <summary>
     /// not functional yet, but will eventually play sound effects
@@ -164,8 +165,13 @@ public class ButtonController : MonoBehaviour
             // Play sound effect 
             AudioSource.PlayClipAtPoint(click, camPos);
         }
+        //opening the menu 
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
         //  SceneManager.LoadScene("Main Menu");
     }
+
+   
 
 
 }
