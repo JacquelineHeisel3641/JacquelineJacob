@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PauseMenuBehaviour : MonoBehaviour
 {
     public InputAction openPause;
-    public GameObject pauseMenu;
+    public  GameObject pauseMenu;
     // finding the player controls/ is the variable 
 
 
@@ -67,4 +67,16 @@ public class PauseMenuBehaviour : MonoBehaviour
         
        
     }
+    //public void resume()
+    //{
+    //    vector3 campos = camera.main.transform.position;
+
+    //    if (audiocontroller.soundeffectson)
+    //    {
+    //        // play sound effect 
+    //        audiosource.playclipatpoint(click, campos);
+    //    }
+
+
+    //}
 }
