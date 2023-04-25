@@ -1,3 +1,10 @@
+/*****************************************************************************
+// File Name :         DoorBehaviour.cs
+// Author :            Jacqueline Heisel
+// Creation Date :     April 22, 2023
+//
+// Brief Description : This script controls the pause menu. 
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,14 +18,8 @@ public class PauseMenuBehaviour : MonoBehaviour
 
 
     /// <summary>
-    /// making the player controls script availbale to use, does at the start 
-    /// and never again 
+    /// Sets up the start button as the button being used 
     /// </summary>
-    /*private void awake()
-    {
-        playercontrols = new playercontrols();
-    }*/
-
     private void Start()
     {
         //equivalent of get key down
@@ -31,7 +32,10 @@ public class PauseMenuBehaviour : MonoBehaviour
     }
 
    
-
+    /// <summary>
+    /// looks for the start button being pressed and acts when it does
+    /// </summary>
+    /// <param name="obj"></param>
     private void OpenPause_started(InputAction.CallbackContext obj)
     {
 
@@ -40,23 +44,19 @@ public class PauseMenuBehaviour : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Looks for when the start button isn't pressed, does nothing
+    /// </summary>
+    /// <param name="obj"></param>
     private void OpenPause_canceled(InputAction.CallbackContext obj)
     {
         //not used yet  
     }
 
-    /* private void OnEnable()
-     {
-         playerControls.Enable();
-
-         playerControls.PlayerActions.PauseMenu.performed += ctx => ;
-     }*/
-
-    /* private void OnDisable()
-     {
-         playerControls.Disable();
-     }*/
-
+   
+    /// <summary>
+    /// Opens the pause menu 
+    /// </summary>
     void OpenPauseMenu()
     {
         //opening the menu 
@@ -67,16 +67,5 @@ public class PauseMenuBehaviour : MonoBehaviour
         
        
     }
-    //public void resume()
-    //{
-    //    vector3 campos = camera.main.transform.position;
 
-    //    if (audiocontroller.soundeffectson)
-    //    {
-    //        // play sound effect 
-    //        audiosource.playclipatpoint(click, campos);
-    //    }
-
-
-    //}
 }
