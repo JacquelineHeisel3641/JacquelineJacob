@@ -41,16 +41,15 @@ public class PlayerAssignerController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Handles functions that execute when player 1 dies.
+    /// </summary>
     public void Player1DiedAssigner()
     {
         player2.tag = "Player1";
 
+        //Sets player 1 to the lead player.
         mainCamera.GetComponent<TestLeadPlayerAssigning>().
             LeadPlayerAssigner(player2, true);
-    }
-
-    public void Player2DiedAssigner()
-    {
-        
     }
 }

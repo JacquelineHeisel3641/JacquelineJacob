@@ -12,7 +12,7 @@ using UnityEngine;
 public class bulletBehavior : MonoBehaviour
 {
     [SerializeField] private int damage;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] public float speed = 100f;
 
     /// <summary>
     /// On collision with an enemy, Destroys itself and triggers damage function 

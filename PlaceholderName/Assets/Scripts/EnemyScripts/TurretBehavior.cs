@@ -18,6 +18,8 @@ public class TurretBehavior : MonoBehaviour
     public GameObject turretLaser;
     public GameObject laserSpawn;
 
+    public GameObject doorController;
+
     [SerializeField] private float speed;
     [SerializeField] private float rotationModifier;
     private float followDecider;
@@ -36,6 +38,8 @@ public class TurretBehavior : MonoBehaviour
     {
         //Decides which player the enemy will initially follow.
         followDecider = Random.Range(0, 2);
+
+        doorController = GameObject.Find("Door Controller");
 
         AssignPlayers();
     }
@@ -142,5 +146,13 @@ public class TurretBehavior : MonoBehaviour
     {
         player1 = GameObject.FindWithTag("Player1");
         player2 = GameObject.FindWithTag("Player2");
+    }
+
+    /// <summary>
+    /// Increases the turretKillCounter on doorBehaviour when turret is killed.
+    /// </summary>
+    public void TurretKilled()
+    {
+        doorController.GetComponent<DoorBehaviour>().turretKillCounter++;
     }
 }

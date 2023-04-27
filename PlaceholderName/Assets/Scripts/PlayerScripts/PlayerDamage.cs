@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.TextCore;
 
 public class PlayerDamage : MonoBehaviour
 {
@@ -16,12 +17,19 @@ public class PlayerDamage : MonoBehaviour
 
     public GameObject enemyController;
 
+    public GameObject healthText;
+
     /// <summary>
     /// Sets a reference to EnemyController.
     /// </summary>
     private void Start()
     {
         enemyController = GameObject.Find("EnemyController");
+    }
+
+    private void Update()
+    {
+        healthText.GetComponent<TMPro.TextMeshProUGUI>().text = "Health: " + health;
     }
 
     /// <summary>

@@ -20,6 +20,7 @@ public class TimmyBehavior : MonoBehaviour
     private float distanceToP1;
 
     private bool followingPlayer1;
+    private bool canAttack = true;
 
     public bool player1Destroyed = false;
     public bool player2Destroyed = false;
@@ -29,6 +30,9 @@ public class TimmyBehavior : MonoBehaviour
 
     public GameObject enemyController;
     public GameObject gameController;
+    public GameObject doorController;
+
+    public GameObject slashAnimator;
 
     Vector3 playerPos;
 
@@ -47,6 +51,9 @@ public class TimmyBehavior : MonoBehaviour
 
         //Reference for EnemyController.
         enemyController = GameObject.Find("EnemyController");
+
+        //Reference for the DoorController.
+        doorController = GameObject.Find("Door Controller");
 
         if (player1 != null)
         {
@@ -79,24 +86,27 @@ public class TimmyBehavior : MonoBehaviour
         }
 
 
-
+        Vector3 playerPos = Vector3.zero;
         //Executes code based off the value of followingPlayer1.
         if (followingPlayer1)
         {
             //Moves the enemy toward player1.
-            Vector3 playerPos = player1.transform.position;
-
-            transform.position = Vector3.MoveTowards(transform.position, playerPos,
-                speed * Time.deltaTime);
+            playerPos = player1.transform.position;
         }
         else if (followingPlayer1 == false)
         {
             //Moves the enemy toward player2.
-            Vector3 playerPos = player2.transform.position;
-
-            transform.position = Vector3.MoveTowards(transform.position, playerPos,
-                speed * Time.deltaTime);
+            playerPos = player2.transform.position;
         }
+
+        transform.position = Vector3.MoveTowards(transform.position, playerPos,
+            speed * Time.deltaTime);
+
+        float offset = 0f;
+        Vector2 dir = (transform.position - playerPos);
+        dir.Normalize();
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 
     private IEnumerator FollowDecider()
@@ -149,8 +159,32 @@ public class TimmyBehavior : MonoBehaviour
         if (collision.gameObject.CompareTag("Player1") || collision.gameObject.
             CompareTag("Player2"))
         {
-            collision.gameObject.GetComponent<PlayerDamage>().TakeDamage
-                (damageDealt);
+            if (canAttack == true)
+            {
+                collision.gameObject.GetComponent<PlayerDamage>().TakeDamage
+                    (damageDealt);
+
+                canAttack = false;
+
+                slashAnimator.SetActive(true);
+
+                StartCoroutine("AttackCooldown");
+            }
         }
+    }
+
+    private IEnumerator AttackCooldown()
+    {
+        for (int i = 3; i > 0; i--)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+
+        canAttack = true;
+    }
+
+    private void OnDestroy()
+    {
+        doorController.GetComponent<DoorBehaviour>().enemyKillCounter++;
     }
 }
