@@ -25,8 +25,10 @@ public class TargetBehaviour : MonoBehaviour
                 //  AudioSource.PlayClipAtPoint(Munch, camPos);
             }
 
+            TutorialDoorBehaviour.targetsDestoryed += 1;
 
             Debug.Log("target hit");
+            Debug.Log(TutorialDoorBehaviour.targetsDestoryed);
 
             Destroy(this.gameObject);
 
