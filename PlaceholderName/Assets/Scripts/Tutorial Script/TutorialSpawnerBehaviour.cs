@@ -17,6 +17,8 @@ public class TutorialSpawnerBehaviour : MonoBehaviour
     private Vector3 spawnPos3;
     private Vector3 spawnPos4;
 
+    public bool zombieSpawned;
+
 
 
     private void Start()
@@ -27,17 +29,21 @@ public class TutorialSpawnerBehaviour : MonoBehaviour
         spawnPos2 = spawnLoc2.transform.position;
         spawnPos3 = spawnLoc3.transform.position;
         spawnPos4 = spawnLoc4.transform.position;
+        zombieSpawned = false;
 
-        Instantiate(zombie, spawnPos1, Quaternion.identity);
-        Instantiate(zombie, spawnPos2, Quaternion.identity);
-        Instantiate(zombie, spawnPos3, Quaternion.identity);
-        Instantiate(zombie, spawnPos4, Quaternion.identity);
-
-    }
+}
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (TutorialDoorBehaviour.door2Unlocked && zombieSpawned != true)
+        {
+            Instantiate(zombie, spawnPos1, Quaternion.identity);
+            Instantiate(zombie, spawnPos2, Quaternion.identity);
+            Instantiate(zombie, spawnPos3, Quaternion.identity);
+            Instantiate(zombie, spawnPos4, Quaternion.identity);
+
+            zombieSpawned = true;
+        }
     }
 }
