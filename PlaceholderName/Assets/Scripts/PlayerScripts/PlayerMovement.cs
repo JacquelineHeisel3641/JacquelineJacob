@@ -280,9 +280,6 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(gameObject.CompareTag("Player2"))
         {
-            gameController.GetComponent<PlayerAssignerController>().
-                Player2DiedAssigner();
-
             gameController.GetComponent<GameController>().StartCoroutine
                 ("RespawnTimer");
         }

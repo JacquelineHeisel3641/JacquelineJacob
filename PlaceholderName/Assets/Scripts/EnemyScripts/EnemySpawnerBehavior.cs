@@ -50,6 +50,9 @@ public class EnemySpawnerBehavior : MonoBehaviour
         //StartCoroutine("EnemySpawns");
     }
 
+    /// <summary>
+    /// Sets the scaling variables to their proper amounts.
+    /// </summary>
     private void Update()
     {
         secondsToWait = gameController.GetComponent<GameController>().SecondsToWait;
@@ -94,11 +97,17 @@ public class EnemySpawnerBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Starts spawning enemies.
+    /// </summary>
     private void OnEnable()
     {
         StartCoroutine("EnemySpawns");
     }
 
+    /// <summary>
+    /// Stops spawning enemies.
+    /// </summary>
     private void OnDisable()
     {
         StopCoroutine("EnemySpawns");
