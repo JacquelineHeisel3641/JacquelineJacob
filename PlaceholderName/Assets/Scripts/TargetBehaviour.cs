@@ -11,17 +11,7 @@ using UnityEngine;
 
 public class TargetBehaviour : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        //create targets
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // if hit by item with bullet tag, destory this object 
-    }
+  
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
