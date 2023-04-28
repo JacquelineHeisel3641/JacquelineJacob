@@ -102,13 +102,24 @@ public class TimmyBehavior : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, playerPos,
             speed * Time.deltaTime);
 
+        //Offest to correct any potential differences between the calculation
+        //and desired effect.
         float offset = 0f;
+
+        //Gets the direction the enemy need to face, then normalizes it to
+        //ensure no weird errors.
         Vector2 dir = (transform.position - playerPos);
         dir.Normalize();
+
+        //Calculates the angle the object needs to rotate, then rotates.
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(Vector3.forward * (angle + offset));
     }
 
+    /// <summary>
+    /// Decids which player to follow based off of which player is closer.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator FollowDecider()
     {
         for (; ; )
@@ -173,6 +184,10 @@ public class TimmyBehavior : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Makes sure that enemies cannot repeatedly attack.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator AttackCooldown()
     {
         for (int i = 3; i > 0; i--)
@@ -183,6 +198,10 @@ public class TimmyBehavior : MonoBehaviour
         canAttack = true;
     }
 
+    /// <summary>
+    /// Increments enemyKillCounter from DoorBehaviour every time this enemy is 
+    /// killed.
+    /// </summary>
     private void OnDestroy()
     {
         doorController.GetComponent<DoorBehaviour>().enemyKillCounter++;

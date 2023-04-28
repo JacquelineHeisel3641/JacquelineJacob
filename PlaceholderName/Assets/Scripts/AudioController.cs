@@ -1,3 +1,10 @@
+/*****************************************************************************
+// File Name :         AudioController.cs
+// Author :            Jacqueline Heisel
+// Creation Date :     April 26, 2023
+//
+// Brief Description : Controls whether or not sound effects and music are playing.
+*****************************************************************************/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +17,9 @@ public class AudioController : MonoBehaviour
     public Text soundStatus;
     public Text musicStatus;
 
+    /// <summary>
+    /// Sets text to display whether the related option is on or off.
+    /// </summary>
     void Start()
     {
         if (MusicController.musicOn)
@@ -35,7 +45,9 @@ public class AudioController : MonoBehaviour
     }
 
    
-
+    /// <summary>
+    /// Turns sound effects on and off.
+    /// </summary>
     public void SoundEffects()
     {
         if (soundEffectsOn)
@@ -50,6 +62,10 @@ public class AudioController : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// Turns music on and off.
+    /// </summary>
     public void Music()
     {
         if (MusicController.musicOn)
