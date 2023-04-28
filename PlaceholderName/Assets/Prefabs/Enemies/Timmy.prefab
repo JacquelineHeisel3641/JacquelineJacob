@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7117079381170411765}
   - component: {fileID: 7117079381170411764}
   - component: {fileID: 1954871538887359170}
+  - component: {fileID: 5626588194803174594}
   m_Layer: 0
   m_Name: Timmy
   m_TagString: Enemy
@@ -31,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 7117079381170411723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.7060695, y: -4.646797, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 677c9e4141c3bc049a3aad7b095dacec, type: 3}
   m_Color: {r: 0, g: 0.9433962, b: 0.122620024, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -137,15 +138,15 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117079381170411723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.3273101, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.17268991
 --- !u!114 &7117079381170411764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,12 +168,28 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117079381170411723}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0017786026, y: 0}
+  m_Offset: {x: -0.3272499, y: 0}
   serializedVersion: 2
-  m_Radius: 0.85038495
+  m_Radius: 0.34103164
+--- !u!70 &5626588194803174594
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117079381170411723}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.28838632, y: 0.16164255}
+  m_Size: {x: 0.5504157, y: 0.9667551}
+  m_Direction: 0
