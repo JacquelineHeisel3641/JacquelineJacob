@@ -161,11 +161,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8318876349339473617}
   - component: {fileID: 8318876349339473616}
-  - component: {fileID: 8318876349339473619}
-  - component: {fileID: 8318876349339473618}
   - component: {fileID: 8318876349339473628}
   - component: {fileID: 8318876349339473629}
   - component: {fileID: 8318876349339473630}
+  - component: {fileID: 2859491001988468197}
+  - component: {fileID: 6489502118129661273}
   m_Layer: 0
   m_Name: Zombie
   m_TagString: Enemy
@@ -182,7 +182,7 @@ Transform:
   m_GameObject: {fileID: 8318876349339473623}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.807, y: 1.7741, z: 0}
-  m_LocalScale: {x: 0.5571, y: 0.5571, z: 0.5571}
+  m_LocalScale: {x: 3, y: 3, z: 0.5571}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7613943097784631097}
@@ -231,7 +231,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da6bdd3d1d7f6d64d8b9ea2573fa0359, type: 3}
   m_Color: {r: 0.16081923, g: 0.38679248, b: 0.12224101, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -242,38 +242,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8318876349339473619
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8318876349339473623}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
---- !u!58 &8318876349339473618
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8318876349339473623}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.02344813, y: -0.00000021398185}
-  serializedVersion: 2
-  m_Radius: 1.2034361
 --- !u!50 &8318876349339473628
 Rigidbody2D:
   serializedVersion: 4
@@ -330,3 +298,35 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 11
   turretDead: 0
+--- !u!70 &2859491001988468197
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318876349339473623}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.3353576, y: 0.22652273}
+  m_Size: {x: 0.57414216, y: 0.765485}
+  m_Direction: 0
+--- !u!70 &6489502118129661273
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8318876349339473623}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.3378651, y: 0.22652292}
+  m_Size: {x: 0.68101853, y: 1.0572771}
+  m_Direction: 0
