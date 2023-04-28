@@ -15,6 +15,12 @@ using UnityEngine.InputSystem;
 
 public class DoorBehaviour : MonoBehaviour
 {
+    private int enemyCount;
+    public int enemyKillCounter;
+    public int turretKillCounter;
+
+    private bool noEnemies = false;
+
     // bools to check which doors has been opened
     public static bool door1Unlocked;
     public static bool door2Unlocked;
@@ -68,14 +74,23 @@ public class DoorBehaviour : MonoBehaviour
     /// </summary>
     /// <param name="obj"></param>
     private void DoorOpen_started(InputAction.CallbackContext obj)
-    {
-        
-            UnlockDoor();
-        
-        
+    {  
+            //UnlockDoor();
     }
 
-   
+    private void Update()
+    {
+        GameObject[] activeEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        enemyCount = activeEnemies.Length;
+
+        if(enemyCount == 0)
+        {
+            noEnemies = true;
+        }
+
+        UnlockDoor();
+    }
 
     /// <summary>
     /// Checking to see which door to unlock based on how many doors the
@@ -83,39 +98,43 @@ public class DoorBehaviour : MonoBehaviour
     /// </summary>
     void UnlockDoor()
     {
-        if(door1Unlocked != true)
-        {
-            door1TileMap.SetActive(false);
-            door1Unlocked = true;
-        }
-        else if (door1Unlocked && door2Unlocked != true)
-        {
-            door2TileMap.SetActive(false);
-            door2Unlocked = true;
-        }
-        else if (door1Unlocked && door2Unlocked && door3Unlocked != true)
-        {
-            door3TileMap.SetActive(false);
-            door3Unlocked = true;
-        }
-        else if (door1Unlocked && door2Unlocked && door3Unlocked 
-            && door4Unlocked != true)
-        {
-            door4TileMap.SetActive(false);
-            door4Unlocked = true;
-        }
-        else if (door1Unlocked && door2Unlocked && door3Unlocked
-            && door4Unlocked && door5Unlocked != true)
-        {
-            door5TileMap.SetActive(false);
-            door5Unlocked = true;
-        }
-        else if (door1Unlocked && door2Unlocked && door3Unlocked
-           && door4Unlocked && door5Unlocked && door6Unlocked != true)
+        if (door1Unlocked && door2Unlocked && door3Unlocked
+           && door4Unlocked && door5Unlocked == true && enemyKillCounter >= 32 && 
+           turretKillCounter >= 17)
         {
             door6TileMap.SetActive(false);
             door6Unlocked = true;
         }
+        else if (door1Unlocked && door2Unlocked && door3Unlocked
+            && door4Unlocked == true && enemyKillCounter >= 24 && turretKillCounter
+            >= 12)
+        {
+            door5TileMap.SetActive(false);
+            door5Unlocked = true;
+        }
+        else if (door1Unlocked && door2Unlocked && door3Unlocked == true && 
+            enemyKillCounter >= 20)
+        {
+            door4TileMap.SetActive(false);
+            door4Unlocked = true;
+        } 
+        else if (door1Unlocked && door2Unlocked == true && enemyKillCounter >= 10 
+            && turretKillCounter >= 5)
+        {
+            door3TileMap.SetActive(false);
+            door3Unlocked = true;
+        }
+        else if (door1Unlocked == true && enemyKillCounter >= 4 && turretKillCounter
+            >= 1)
+        {
+            door2TileMap.SetActive(false);
+            door2Unlocked = true;
+        } 
+        else if (enemyKillCounter >= 2)
+        {
+            door1TileMap.SetActive(false);
+            door1Unlocked = true;
+        } 
         else
         {
             // this is a classic debug log

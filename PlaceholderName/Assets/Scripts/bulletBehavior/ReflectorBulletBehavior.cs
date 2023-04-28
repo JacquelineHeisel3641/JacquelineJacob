@@ -12,7 +12,7 @@ using UnityEngine;
 public class ReflectorBulletBehavior : MonoBehaviour
 {
     [SerializeField] private int damage;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] public float speed = 100f;
 
     [SerializeField]private int wallCollisions = 0;
 

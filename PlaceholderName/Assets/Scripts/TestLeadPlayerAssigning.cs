@@ -32,8 +32,8 @@ public class TestLeadPlayerAssigning : MonoBehaviour
         {
             if (leadPlayer != null)
             {
-                // Makes camera follow the lead player by accessing the lead player's
-                // position through the leadPlayer GameObject.
+                // Makes camera follow the lead player by accessing the lead
+                // player's position through the leadPlayer GameObject.
                 gameObject.transform.position = new Vector3(leadPlayer.transform.
                     position.x, leadPlayer.transform.position.y,
                     leadPlayer.transform.position.z - 10);
@@ -44,10 +44,15 @@ public class TestLeadPlayerAssigning : MonoBehaviour
             player1Pos = player1.transform.position;
             player2Pos = player2.transform.position;
 
+            float xMidpoint = (player1Pos.x + player2Pos.x) / 2;
+            float yMidpoint = (player1Pos.y + player2Pos.y) / 2;
+
             //Sets the camera's position to the midpoint of the distance between
             //players. (Using midpoint formula: (p1x + p2x)/2, (p1y + p2y)/2.)
-            transform.position = new Vector3((player1Pos.x + player2Pos.y) / 2, 
-                (player1Pos.y + player2Pos.y) / 2, -5);
+            transform.position = new Vector3(xMidpoint, yMidpoint, -5);
+
+            Debug.Log(xMidpoint);
+            Debug.Log(yMidpoint);
         }
 
         //Controls the camera scaling.

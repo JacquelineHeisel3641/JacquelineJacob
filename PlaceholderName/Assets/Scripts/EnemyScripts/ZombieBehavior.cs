@@ -31,6 +31,7 @@ public class ZombieBehavior : MonoBehaviour
 
     public GameObject enemyController;
     public GameObject gameController;
+    public GameObject doorController;
 
     public GameObject slashAnimator;
 
@@ -51,6 +52,9 @@ public class ZombieBehavior : MonoBehaviour
 
         //Reference for EnemyController.
         enemyController = GameObject.Find("EnemyController");
+
+        //Reference for the DoorController.
+        doorController = GameObject.Find("Door Controller");
 
         if (player1 != null)
         {
@@ -183,5 +187,10 @@ public class ZombieBehavior : MonoBehaviour
         }
 
         canAttack = true;
+    }
+
+    private void OnDestroy()
+    {
+        doorController.GetComponent<DoorBehaviour>().enemyKillCounter++;
     }
 }
