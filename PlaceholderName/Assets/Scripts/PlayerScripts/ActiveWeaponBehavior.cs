@@ -15,10 +15,10 @@ public class ActiveWeaponBehavior : MonoBehaviour
     InputActionAsset inputAsset;
     InputActionMap inputMap;
 
-    private GameObject[] bulletPrefabArray = new GameObject[10];
+    public GameObject[] bulletPrefabArray = new GameObject[10];
     private GameObject[] carriedWeapons = new GameObject[10];
 
-    private int activeBulletPrefab = 0;
+    public int activeBulletPrefab = 0;
 
     public GameObject bulletPrefab;
 

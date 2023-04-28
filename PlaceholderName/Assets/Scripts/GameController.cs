@@ -99,6 +99,11 @@ public class GameController : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Checks to see whether both players have spawned to make sure the game does 
+    /// not start before player's are active.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator CheckForStart()
     {
         for (; ; )
@@ -117,6 +122,10 @@ public class GameController : MonoBehaviour
         AmountToSpawn = 1;
     }
 
+    /// <summary>
+    /// Respawns a dead player after a certain amount of time has passed.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator RespawnTimer()
     {
         for(int i = 10; i > 0; i--)
@@ -124,9 +133,11 @@ public class GameController : MonoBehaviour
             yield return new WaitForSeconds(1f);
         }
 
+        //Instantiates player.
         GameObject currPlayer = Instantiate(respawnPlayer, transform.position, 
             Quaternion.identity);
 
+        //Moves player to the position of the still alive player.
         currPlayer.transform.position = GameObject.FindGameObjectWithTag("Player1")
             .transform.position;
     }

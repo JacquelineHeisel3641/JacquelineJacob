@@ -32,8 +32,8 @@ public class TestLeadPlayerAssigning : MonoBehaviour
         {
             if (leadPlayer != null)
             {
-                // Makes camera follow the lead player by accessing the lead player's
-                // position through the leadPlayer GameObject.
+                // Makes camera follow the lead player by accessing the lead
+                // player's position through the leadPlayer GameObject.
                 gameObject.transform.position = new Vector3(leadPlayer.transform.
                     position.x, leadPlayer.transform.position.y,
                     leadPlayer.transform.position.z - 10);
@@ -44,24 +44,44 @@ public class TestLeadPlayerAssigning : MonoBehaviour
             player1Pos = player1.transform.position;
             player2Pos = player2.transform.position;
 
-            transform.position = new Vector3((player1Pos.x + player2Pos.y) / 2, 
-                (player1Pos.y + player2Pos.y) / 2, -5);
+            float xMidpoint = (player1Pos.x + player2Pos.x) / 2;
+            float yMidpoint = (player1Pos.y + player2Pos.y) / 2;
+
+            //Sets the camera's position to the midpoint of the distance between
+            //players. (Using midpoint formula: (p1x + p2x)/2, (p1y + p2y)/2.)
+            transform.position = new Vector3(xMidpoint, yMidpoint, -5);
+
+            Debug.Log(xMidpoint);
+            Debug.Log(yMidpoint);
         }
 
+        //Controls the camera scaling.
         if(player2 != null)
         {
-            if (Vector3.Distance(player1Pos, player2Pos) > 1)
+            //Makes sure that the camera viewport size will not be smaller than 5.
+            if (Vector3.Distance(player1Pos, player2Pos) > 5)
             {
-                GetComponent<Camera>().orthographicSize = Vector3.Distance(player1Pos, player2Pos) - 1f;
+                //Makes sure that the camera viewport size will not be smaller than
+                //5 while using the scaling formula.
+                if(Vector3.Distance(player1Pos, player2Pos) - 4.3f > 5)
+                {
+                    //Scales the camera viewport size based off how far the players
+                    //are from each other.
+                    GetComponent<Camera>().orthographicSize = Vector3.Distance
+                        (player1Pos, player2Pos) - 4.3f;
+                }
+                else
+                {
+                    //Default viewport size.
+                    GetComponent<Camera>().orthographicSize = 5f;
+                }
             }
             else
             {
-                GetComponent<Camera>().orthographicSize = 5;
+                //Default viewport size.
+                GetComponent<Camera>().orthographicSize = 5f;
             }
         }
-
-     
-
     }
 
     /// <summary>

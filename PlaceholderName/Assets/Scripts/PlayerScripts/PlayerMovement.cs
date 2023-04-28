@@ -11,6 +11,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isPlayer2 = false;
     public bool isDashing = false;
     private bool finishedDashing = false;
+    private bool canShoot = true;
 
     Vector2 movement;
     Vector2 rotation;
@@ -144,6 +146,16 @@ public class PlayerMovement : MonoBehaviour
         gameController = GameObject.Find("GameController");
 
         AssignPlayerTags();
+
+        //Spawns the player in proper position depending on the scene they are in.
+        if(SceneManager.GetActiveScene().name == "Tutorial Level")
+        {
+            transform.position = new Vector2(-5.17f, 4.24f);
+        }
+        else if(SceneManager.GetActiveScene().name == "Level 1")
+        {
+            transform.position = new Vector2(-3.75f, 2f);
+        }
     }
 
     /// <summary>
@@ -161,6 +173,20 @@ public class PlayerMovement : MonoBehaviour
         bullet = GetComponent<ActiveWeaponBehavior>().bulletPrefab;
         bulletSpawnPos = bulletSpawn.transform;
 
+        switch(gameObject.GetComponent<ActiveWeaponBehavior>().activeBulletPrefab)
+        {
+            case 0:
+                bulletSpeed = bullet.GetComponent<bulletBehavior>().speed;
+                break;
+            case 1:
+                bulletSpeed = bullet.GetComponent<ReflectorBulletBehavior>().speed;
+                break;
+            case 2:
+                bulletSpeed = bullet.GetComponent<BreadBehaviour>().speed;
+                break;
+        }
+
+        //Keeps player from dashing while the dash is on cooldown.
         if(isDashing)
         {
             dodge.Disable();
@@ -175,11 +201,53 @@ public class PlayerMovement : MonoBehaviour
         //Bullet spawns at the location of the bulletSpawn GameObject, which is a
         //child of the player. The direction it travels is determined by the
         //rotation of the player.
-        var spawnedBullet = Instantiate(bullet, bulletSpawn.transform.position, 
-            bulletSpawnPos.rotation); 
-        spawnedBullet.GetComponent<Rigidbody2D>().velocity = bulletSpawnPos.up 
-            * bulletSpeed;
+        if (canShoot)
+        {
+            var spawnedBullet = Instantiate(bullet, bulletSpawn.transform.position,
+                bulletSpawnPos.rotation);
+            spawnedBullet.GetComponent<Rigidbody2D>().velocity = bulletSpawnPos.up
+                * bulletSpeed;
 
+            canShoot = false;
+
+            StartCoroutine("ShootCooldown");
+        }
+    }
+
+    /// <summary>
+    /// Handles the fire rate for the player's weapons. 
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator ShootCooldown()
+    {
+        float shootCooldown = 0;
+
+        //Changes the cooldown depending on the currently active weapon.
+        switch(gameObject.GetComponent<ActiveWeaponBehavior>().activeBulletPrefab)
+        {
+            //Basic Pistol.
+            case 0:
+                shootCooldown = 0.2f;
+                break;
+            //Reflector-flector.
+            case 1:
+                shootCooldown = 0.6f;
+                break;
+            //Bread Bazooka.
+            case 2:
+                shootCooldown = 10f;
+                break;
+        }
+
+        //Runs cooldown.
+        for(float i = shootCooldown; i > 0; i--)
+        {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        canShoot = true;
+
+        StopCoroutine("ShootCooldown");
     }
 
     /// <summary>
@@ -217,29 +285,6 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle - 90));
     }
 
-    /*private void OnBecameInvisible()
-    {
-        if(gameObject.CompareTag("Player2"))
-        {
-            StartCoroutine("InvisibleTeleportTimer");
-        }
-    }*/
-
-    private IEnumerator InvisibleTeleportTimer()
-    {
-        for(int i = 5; i > 0; i--)
-        {
-            yield return new WaitForSeconds(1f);
-        }
-
-        Vector3 spawnPos = GameObject.Find("SpawnPoint").transform.position;
-        spawnPos.z += 10;
-
-        transform.position = spawnPos;
-
-        StopCoroutine("InvisibleTeleportTimer");
-    }
-
     /// <summary>
     /// Enables and disables the input map.
     /// </summary>
@@ -269,11 +314,16 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(gameObject.CompareTag("Player2"))
         {
-            gameController.GetComponent<PlayerAssignerController>().
-                Player2DiedAssigner();
-
             gameController.GetComponent<GameController>().StartCoroutine
                 ("RespawnTimer");
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.gameObject.name == "ToWinScene")
+        {
+            SceneManager.LoadScene("WinScene");
         }
     }
 }

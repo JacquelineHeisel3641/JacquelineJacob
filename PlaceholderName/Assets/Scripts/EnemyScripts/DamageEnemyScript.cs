@@ -27,12 +27,16 @@ public class DamageEnemyScript : MonoBehaviour
 
         if (health <= 0)
         {
+            //Disables key functions if the object killed is a turret.
             if (gameObject.CompareTag("Turret"))
             {
                 gameObject.GetComponent<TurretBehavior>().CancelInvoke(
                     "FireBullets");
 
                 turretDead = true;
+
+                //Calls function to increment the amount of turrets killed.
+                gameObject.GetComponent<TurretBehavior>().TurretKilled();
 
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 gameObject.GetComponent<CircleCollider2D>().enabled = false;

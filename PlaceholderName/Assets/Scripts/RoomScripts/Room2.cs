@@ -24,11 +24,13 @@ public class Room2 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
+            //Activates spawners once the players enter the room.
             for (int i = spawners.Length; i > 0; i--)
             {
                 spawners[i - 1].SetActive(true);
             }
 
+            //Activates turrets once players enter the room.
             for(int i = turrets.Length; i > 0; i--)
             {
                 turrets[i - 1].SetActive(true);
@@ -50,11 +52,13 @@ public class Room2 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player1"))
         {
+            //Deactivates spawners when the players leave.
             for (int i = spawners.Length; i > 0; i--)
             {
                 spawners[i - 1].SetActive(false);
             }
 
+            //Deactivates turrets when players leave the room.
             for (int i = turrets.Length; i > 0; i--)
             {
                 turrets[i - 1].GetComponent<TurretBehavior>().CancelInvoke

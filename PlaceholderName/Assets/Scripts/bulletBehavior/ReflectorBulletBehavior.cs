@@ -12,7 +12,7 @@ using UnityEngine;
 public class ReflectorBulletBehavior : MonoBehaviour
 {
     [SerializeField] private int damage;
-    [SerializeField] private float speed = 10f;
+    [SerializeField] public float speed = 100f;
 
     [SerializeField]private int wallCollisions = 0;
 
@@ -42,7 +42,8 @@ public class ReflectorBulletBehavior : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.CompareTag("Wall"))
+        if(collision.gameObject.CompareTag("Wall") || collision.gameObject.
+            CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
             if(wallCollisions == 2)
             {
