@@ -27,6 +27,9 @@ public class PlayerDamage : MonoBehaviour
         enemyController = GameObject.Find("EnemyController");
     }
 
+    /// <summary>
+    /// Sets the health text below the player equal to their current health value.
+    /// </summary>
     private void Update()
     {
         healthText.GetComponent<TMPro.TextMeshProUGUI>().text = "Health: " + health;

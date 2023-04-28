@@ -42,6 +42,7 @@ public class ReflectorBulletBehavior : MonoBehaviour
     /// <param name="collision"></param>
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        //Destroys bullet if certain collision requirements have been met.
         if(collision.gameObject.CompareTag("Wall") || collision.gameObject.
             CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
@@ -55,6 +56,7 @@ public class ReflectorBulletBehavior : MonoBehaviour
             }
         }
 
+        //Does damage and destroys bullet.
         if (collision.gameObject.CompareTag("Enemy") || collision.gameObject.
             CompareTag("Turret"))
         {

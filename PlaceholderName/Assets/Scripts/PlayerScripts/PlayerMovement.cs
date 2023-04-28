@@ -319,6 +319,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows the player to exit Level1.
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name == "ToWinScene")

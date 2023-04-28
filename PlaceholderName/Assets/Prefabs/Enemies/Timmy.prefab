@@ -31,8 +31,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7117079381170411723}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.7060695, y: -4.646797, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: -0.2016, y: -6.5545, z: 0}
+  m_LocalScale: {x: 1.7283, y: 1.7283, z: 0.5761}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -110,6 +110,8 @@ MonoBehaviour:
   player2: {fileID: 0}
   enemyController: {fileID: 0}
   gameController: {fileID: 0}
+  doorController: {fileID: 0}
+  slashAnimator: {fileID: 0}
 --- !u!50 &7117079381170411766
 Rigidbody2D:
   serializedVersion: 4
