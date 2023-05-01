@@ -18,7 +18,7 @@ public class MusicController : MonoBehaviour
     void Start()
     {
         musicController = GetComponent<AudioSource>();
-        musicOn = true;
+       
     }
 
     // Update is called once per frame
