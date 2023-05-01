@@ -13,7 +13,7 @@ using UnityEngine.TextCore;
 
 public class PlayerDamage : MonoBehaviour
 {
-    [SerializeField] private int health;
+    [SerializeField] public int health;
 
     public GameObject enemyController;
 
