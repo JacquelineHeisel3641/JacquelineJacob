@@ -20,10 +20,12 @@ public class GameController : MonoBehaviour
 
     [SerializeField]private int timeActive = 0;
     [SerializeField]private int amountToSpawn = 0;
-    private int threshold = 30;
+    private int threshold = 15;
 
     private bool increaseAmountSpawning = false;
     private bool startChecking = false;
+
+    public bool gameStarted = false;
 
     public GameObject leadPlayer;
     public GameObject playerPrefab;
@@ -50,6 +52,9 @@ public class GameController : MonoBehaviour
         StartCoroutine("CheckForStart");
     }
 
+    /// <summary>
+    /// Sets lead player reference.
+    /// </summary>
     private void Update()
     {
         leadPlayer = mainCamera.GetComponent<TestLeadPlayerAssigning>().leadPlayer;
@@ -74,7 +79,7 @@ public class GameController : MonoBehaviour
             if (threshold == timeActive)
             {
                 //Sets a new previousThreshold so that scaling will repeat.
-                threshold += 30;
+                threshold += 15;
 
                 //Changes amount of time in-between spawns.
                 if (SecondsToWait > 1f)
@@ -118,6 +123,8 @@ public class GameController : MonoBehaviour
         }
 
         StartCoroutine("GameTimer");
+
+        gameStarted = true;
 
         AmountToSpawn = 1;
     }

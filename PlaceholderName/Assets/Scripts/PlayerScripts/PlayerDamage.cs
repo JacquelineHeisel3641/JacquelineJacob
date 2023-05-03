@@ -17,7 +17,7 @@ public class PlayerDamage : MonoBehaviour
 
     public GameObject enemyController;
 
-    public GameObject healthText;
+    //public GameObject healthText;
 
     /// <summary>
     /// Sets a reference to EnemyController.
@@ -32,7 +32,7 @@ public class PlayerDamage : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        healthText.GetComponent<TMPro.TextMeshProUGUI>().text = "Health: " + health;
+        //healthText.GetComponent<TMPro.TextMeshProUGUI>().text = "Health: " + health;
     }
 
     /// <summary>

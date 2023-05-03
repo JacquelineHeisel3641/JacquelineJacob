@@ -11,6 +11,9 @@ TagManager:
   - Room2Spawner
   - Player1
   - Player2
+  - Bullet
+  - P1Healthbar
+  - P2Healthbar
   layers:
   - Default
   - TransparentFX

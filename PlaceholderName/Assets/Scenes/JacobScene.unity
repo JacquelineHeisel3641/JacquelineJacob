@@ -11267,6 +11267,10 @@ PrefabInstance:
       propertyPath: timmy
       value: 
       objectReference: {fileID: 7117079381170411723, guid: 424d03a56fe2dda47ba583bb2590b20a, type: 3}
+    - target: {fileID: -8970546573968538275, guid: 004904b412590de44bb72f6b6b12e079, type: 3}
+      propertyPath: charlie
+      value: 
+      objectReference: {fileID: 8318876349339473623, guid: 36224bbe1559be041896d5e4cbcbf25b, type: 3}
     - target: {fileID: 2104324842032002421, guid: 004904b412590de44bb72f6b6b12e079, type: 3}
       propertyPath: m_Name
       value: EnemySpawnerRoom6 (3)
@@ -37283,6 +37287,7 @@ MonoBehaviour:
   player1: {fileID: 0}
   player2: {fileID: 0}
   mainCamera: {fileID: 1465797669}
+  playerInputController: {fileID: 1610436683}
 --- !u!114 &1966135498
 MonoBehaviour:
   m_ObjectHideFlags: 0
