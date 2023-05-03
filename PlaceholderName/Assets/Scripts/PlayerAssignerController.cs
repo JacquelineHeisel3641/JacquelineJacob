@@ -8,6 +8,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerAssignerController : MonoBehaviour
 {
@@ -20,6 +22,27 @@ public class PlayerAssignerController : MonoBehaviour
     public GameObject player2;
 
     public GameObject mainCamera;
+
+    public PlayerInputManager playerInputController;
+
+    /// <summary>
+    /// Disables join by button press once both players have joined.
+    /// </summary>
+    private void Update()
+    {
+        if(player1 && player2 != null)
+        {
+            //Changes join behavior to manual joining.
+            playerInputController.GetComponent<PlayerInputManager>().joinBehavior = 
+                PlayerJoinBehavior.JoinPlayersManually;
+        }
+
+        if (player1 == null && player2 == null && gameObject.GetComponent
+            <GameController>().gameStarted == true)
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
+    }
 
     /// <summary>
     /// Sets isPlayer2 to true once player 1 has spawned in.
@@ -47,6 +70,11 @@ public class PlayerAssignerController : MonoBehaviour
     public void Player1DiedAssigner()
     {
         player2.tag = "Player1";
+
+        GameObject switchHealthbar = GameObject.FindGameObjectWithTag
+            ("P2Healthbar");
+
+        switchHealthbar.tag = "P1Healthbar";
 
         //Sets player 1 to the lead player.
         mainCamera.GetComponent<TestLeadPlayerAssigning>().

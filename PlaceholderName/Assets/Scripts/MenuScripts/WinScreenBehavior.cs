@@ -19,4 +19,12 @@ public class WinScreenBehavior : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+
+    /// <summary>
+    /// Restarts the level.
+    /// </summary>
+    public void RestartLevel()
+    {
+        SceneManager.LoadScene("Level 1");
+    }
 }

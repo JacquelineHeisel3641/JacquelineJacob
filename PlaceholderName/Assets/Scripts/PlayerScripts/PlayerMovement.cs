@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject mainCamera;
 
+    public GameObject healthBar;
+
     private Rigidbody2D rb2D;
 
     private InputAction inputMovement;
@@ -155,6 +157,17 @@ public class PlayerMovement : MonoBehaviour
         else if(SceneManager.GetActiveScene().name == "Level 1")
         {
             transform.position = new Vector2(-3.75f, 2f);
+        }
+
+        if (gameObject.CompareTag("Player1"))
+        {
+            //Spawns healthBar for the player and sets tag.
+            Instantiate(healthBar).tag = "P1Healthbar";
+        }
+        else
+        {
+            //Spawns healthBar for the player and sets tag.
+            Instantiate(healthBar).tag = "P2Healthbar";
         }
     }
 
