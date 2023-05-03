@@ -426,7 +426,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -614,6 +614,7 @@ MonoBehaviour:
   instructionPage: {fileID: 1623017961}
   click: {fileID: 8300000, guid: d13cefcb59c71624f92448e552703a69, type: 3}
   newGame: {fileID: 8300000, guid: d27d05177d176e34a865c1e7d046ffb7, type: 3}
+  pauseMenu: {fileID: 0}
 --- !u!4 &848333981
 Transform:
   m_ObjectHideFlags: 0
