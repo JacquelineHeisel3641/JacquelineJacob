@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField]private int timeActive = 0;
     [SerializeField]private int amountToSpawn = 0;
-    private int threshold = 20;
+    private int threshold = 15;
 
     private bool increaseAmountSpawning = false;
     private bool startChecking = false;
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
             if (threshold == timeActive)
             {
                 //Sets a new previousThreshold so that scaling will repeat.
-                threshold += 20;
+                threshold += 15;
 
                 //Changes amount of time in-between spawns.
                 if (SecondsToWait > 1f)
