@@ -26,7 +26,13 @@ public class ActiveWeaponBehavior : MonoBehaviour
     [SerializeField] private GameObject reflectorBullet;
     [SerializeField] private GameObject bazookaBullet;
 
+    public GameObject gun;
+
     InputAction switchWeapons;
+
+    public Sprite basicPistol;
+    public Sprite reflectorFlector;
+    public Sprite breadBazooka;
 
     /// <summary>
     /// Assigns bullet prefabs to their array.
@@ -57,6 +63,8 @@ public class ActiveWeaponBehavior : MonoBehaviour
     {
         //Sets active weapon to whatever is in the first slot.
         bulletPrefab = bulletPrefabArray[0];
+
+        gun.GetComponent<SpriteRenderer>().sprite = basicPistol;
     }
 
     /// <summary>
@@ -71,16 +79,19 @@ public class ActiveWeaponBehavior : MonoBehaviour
                 //Increments to next weapon.
                 activeBulletPrefab++;
                 RangedWeaponAssigner();
+                gun.GetComponent<SpriteRenderer>().sprite = reflectorFlector;
                 break;
             case 1:
                 //Increments to next weapon.
                 activeBulletPrefab++;
                 RangedWeaponAssigner();
+                gun.GetComponent<SpriteRenderer>().sprite = breadBazooka;
                 break;
             case 2:
                 //Resets active weapon to first slot.
                 activeBulletPrefab = 0;
                 RangedWeaponAssigner();
+                gun.GetComponent<SpriteRenderer>().sprite = basicPistol;
                 break;   
         }
     }

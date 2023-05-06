@@ -44,6 +44,8 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject mainCamera;
 
+    public GameObject healthBar;
+
     private Rigidbody2D rb2D;
 
     private InputAction inputMovement;
@@ -156,6 +158,17 @@ public class PlayerMovement : MonoBehaviour
         {
             transform.position = new Vector2(-3.75f, 2f);
         }
+
+        if (gameObject.CompareTag("Player1"))
+        {
+            //Spawns healthBar for the player and sets tag.
+            Instantiate(healthBar).tag = "P1Healthbar";
+        }
+        else
+        {
+            //Spawns healthBar for the player and sets tag.
+            Instantiate(healthBar).tag = "P2Healthbar";
+        }
     }
 
     /// <summary>
@@ -190,6 +203,15 @@ public class PlayerMovement : MonoBehaviour
         if(isDashing)
         {
             dodge.Disable();
+        }
+
+        if(gameObject.CompareTag("Player1"))
+        {
+            GetComponent<SpriteRenderer>().color = new Color(183, 0, 0, 255);
+        }
+        else if(gameObject.CompareTag("Player2"))
+        {
+            GetComponent<SpriteRenderer>().color = new Color(0, 36, 183, 255);
         }
     }
 
@@ -231,7 +253,7 @@ public class PlayerMovement : MonoBehaviour
                 break;
             //Reflector-flector.
             case 1:
-                shootCooldown = 0.6f;
+                shootCooldown = 0.3f;
                 break;
             //Bread Bazooka.
             case 2:
@@ -319,6 +341,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Allows the player to exit Level1.
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.name == "ToWinScene")

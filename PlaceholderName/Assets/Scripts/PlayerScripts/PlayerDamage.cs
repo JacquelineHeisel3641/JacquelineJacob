@@ -13,11 +13,11 @@ using UnityEngine.TextCore;
 
 public class PlayerDamage : MonoBehaviour
 {
-    [SerializeField] private int health;
+    [SerializeField] public int health;
 
     public GameObject enemyController;
 
-    public GameObject healthText;
+    //public GameObject healthText;
 
     /// <summary>
     /// Sets a reference to EnemyController.
@@ -27,9 +27,12 @@ public class PlayerDamage : MonoBehaviour
         enemyController = GameObject.Find("EnemyController");
     }
 
+    /// <summary>
+    /// Sets the health text below the player equal to their current health value.
+    /// </summary>
     private void Update()
     {
-        healthText.GetComponent<TMPro.TextMeshProUGUI>().text = "Health: " + health;
+        //healthText.GetComponent<TMPro.TextMeshProUGUI>().text = "Health: " + health;
     }
 
     /// <summary>
