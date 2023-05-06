@@ -26,8 +26,8 @@ public class HealthBar : MonoBehaviour
 
     private void Update()
     {
-        Vector3 healthBarPos = new Vector3(transform.position.x - 0.50f, 
-            transform.position.y - 1, 0);
+        Vector3 healthBarPos = new Vector3(transform.position.x - 0.35f, 
+            transform.position.y - 0.7f, 0);
 
         healthBar.transform.position = healthBarPos;
 

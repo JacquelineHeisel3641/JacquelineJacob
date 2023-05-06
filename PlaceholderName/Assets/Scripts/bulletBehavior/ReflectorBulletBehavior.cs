@@ -46,7 +46,7 @@ public class ReflectorBulletBehavior : MonoBehaviour
         if(collision.gameObject.CompareTag("Wall") || collision.gameObject.
             CompareTag("Player1") || collision.gameObject.CompareTag("Player2"))
         {
-            if(wallCollisions == 2)
+            if(wallCollisions == 4)
             {
                 Destroy(gameObject);
             }

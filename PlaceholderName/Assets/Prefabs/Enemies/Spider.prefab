@@ -136,8 +136,9 @@ GameObject:
   - component: {fileID: 7117079381170411764}
   - component: {fileID: 1954871538887359170}
   - component: {fileID: 5626588194803174594}
+  - component: {fileID: -1171951181872276237}
   m_Layer: 0
-  m_Name: Timmy
+  m_Name: Spider
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: 677c9e4141c3bc049a3aad7b095dacec, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6134b449e7bbe1e42b3083c56a76fea7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -316,3 +317,23 @@ CapsuleCollider2D:
   m_Offset: {x: -0.28838632, y: 0.16164255}
   m_Size: {x: 0.5504157, y: 0.9667551}
   m_Direction: 0
+--- !u!95 &-1171951181872276237
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7117079381170411723}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67af24f176b54314db091c29ba3c5f3a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
