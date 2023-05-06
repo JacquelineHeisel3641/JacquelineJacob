@@ -63,7 +63,7 @@ public class TestLeadPlayerAssigning : MonoBehaviour
             {
                 //Makes sure that the camera viewport size will not be smaller than
                 //5 while using the scaling formula.
-                if(Vector3.Distance(player1Pos, player2Pos) - 4.3f > 5)
+                if(Vector3.Distance(player1Pos, player2Pos) - 4.3f > 6)
                 {
                     //Scales the camera viewport size based off how far the players
                     //are from each other.
@@ -73,13 +73,13 @@ public class TestLeadPlayerAssigning : MonoBehaviour
                 else
                 {
                     //Default viewport size.
-                    GetComponent<Camera>().orthographicSize = 5f;
+                    GetComponent<Camera>().orthographicSize = 6f;
                 }
             }
             else
             {
                 //Default viewport size.
-                GetComponent<Camera>().orthographicSize = 5f;
+                GetComponent<Camera>().orthographicSize = 6f;
             }
         }
     }

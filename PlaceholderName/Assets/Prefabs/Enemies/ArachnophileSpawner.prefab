@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: -8970546573968538275}
   - component: {fileID: 8588634251984804115}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: ArachnophileSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -133,9 +133,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e7f56635bae0f4689fa976fae1f4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zombie: {fileID: 8318876349339473623, guid: 99d6d9eebe20fbd438fa31264529d68f, type: 3}
-  timmy: {fileID: 7117079381170411723, guid: 424d03a56fe2dda47ba583bb2590b20a, type: 3}
-  charlie: {fileID: 8318876349339473623, guid: 36224bbe1559be041896d5e4cbcbf25b, type: 3}
+  zombie: {fileID: 7117079381170411723, guid: 273ce942a6ce9a2459eb20ba321f2fed, type: 3}
+  timmy: {fileID: 7117079381170411723, guid: 273ce942a6ce9a2459eb20ba321f2fed, type: 3}
+  charlie: {fileID: 7117079381170411723, guid: 273ce942a6ce9a2459eb20ba321f2fed, type: 3}
   spawnLoc1: {fileID: 3334643824286149782}
   spawnLoc2: {fileID: 3913866170065981407}
   spawnLoc3: {fileID: 4994784527622986247}
