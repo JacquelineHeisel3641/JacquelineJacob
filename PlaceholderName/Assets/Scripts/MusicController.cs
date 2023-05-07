@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class MusicController : MonoBehaviour
 {
-    public static bool musicOn;
+    public static bool musicOn = true;
     AudioSource musicController;
     // Start is called before the first frame update
     void Start()
@@ -27,6 +27,9 @@ public class MusicController : MonoBehaviour
         MusicSettings();
     }
 
+    /// <summary>
+    /// mutes music if button pressed 
+    /// </summary>
     void MusicSettings()
     {
         if (musicOn != true)

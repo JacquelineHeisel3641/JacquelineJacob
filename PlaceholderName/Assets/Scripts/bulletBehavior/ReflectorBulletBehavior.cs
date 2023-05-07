@@ -18,6 +18,24 @@ public class ReflectorBulletBehavior : MonoBehaviour
 
     private float rotationSpeed = 500f;
 
+    public AudioClip shoot;
+
+
+    /// <summary>
+    /// Plays shooting sound effect when instatiated
+    /// </summary>
+    private void Start()
+    {
+        //playing a shooting sound 
+        Vector3 camPos = Camera.main.transform.position;
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+
+            AudioSource.PlayClipAtPoint(shoot, camPos);
+        }
+    }
+
     Vector2 moveVelocity;
 
     /// <summary>

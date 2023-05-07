@@ -102,6 +102,7 @@ MonoBehaviour:
   damage: 5
   speed: 10
   wallCollisions: 0
+  shoot: {fileID: 8300000, guid: 32aac0462d9c1fc419da2d0a3a0832eb, type: 3}
 --- !u!50 &1735749918358996636
 Rigidbody2D:
   serializedVersion: 4

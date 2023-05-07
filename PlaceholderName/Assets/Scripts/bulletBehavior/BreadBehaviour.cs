@@ -13,6 +13,24 @@ public class BreadBehaviour : MonoBehaviour
 {
     [SerializeField] private int damage;
     [SerializeField] public float speed = 50f;
+    public AudioClip shoot;
+
+
+    /// <summary>
+    /// Plays shooting sound effect when instatiated
+    /// </summary>
+    private void Start()
+    {
+        //playing a shooting sound 
+        Vector3 camPos = Camera.main.transform.position;
+        if (AudioController.soundEffectsOn)
+        {
+            // Play sound effect 
+
+            AudioSource.PlayClipAtPoint(shoot, camPos);
+        }
+
+    }
 
     /// <summary>
     /// On collision with an enemy, Destroys itself and triggers damage function 

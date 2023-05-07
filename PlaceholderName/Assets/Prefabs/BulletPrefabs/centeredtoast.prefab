@@ -148,3 +148,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   speed: 5
+  shoot: {fileID: 8300000, guid: 97d0108deea0087478521c0604d87c29, type: 3}
