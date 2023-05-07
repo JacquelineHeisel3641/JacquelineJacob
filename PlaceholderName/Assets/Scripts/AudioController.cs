@@ -13,7 +13,8 @@ using UnityEngine.UI;
 public class AudioController : MonoBehaviour
 {
     public static bool soundEffectsOn = true;
-    //public static bool musicOn = true;
+   
+   
     public Text soundStatus;
     public Text musicStatus;
 
