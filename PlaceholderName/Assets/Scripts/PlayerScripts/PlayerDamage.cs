@@ -16,6 +16,7 @@ public class PlayerDamage : MonoBehaviour
     [SerializeField] public int health;
 
     public GameObject enemyController;
+    public AudioClip hit;
 
     //public GameObject healthText;
 
@@ -47,6 +48,15 @@ public class PlayerDamage : MonoBehaviour
         if (gameObject.GetComponent<PlayerMovement>().isDashing == false)
         {
             health -= damageTaken;
+
+            //playing a damage sound
+            Vector3 camPos = Camera.main.transform.position;
+            if (AudioController.soundEffectsOn)
+            {
+                // Play sound effect 
+
+                AudioSource.PlayClipAtPoint(hit, camPos);
+            }
 
             //Executes if a player is dead.
             if (health <= 0)

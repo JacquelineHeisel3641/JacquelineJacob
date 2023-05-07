@@ -301,6 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   enemyController: {fileID: 0}
+  hit: {fileID: 8300000, guid: ab571bdf24ea37149b057ab6115a8c74, type: 3}
 --- !u!114 &-8855107014352188709
 MonoBehaviour:
   m_ObjectHideFlags: 0
