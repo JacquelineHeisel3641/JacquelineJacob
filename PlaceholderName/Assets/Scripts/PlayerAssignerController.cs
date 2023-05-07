@@ -26,6 +26,28 @@ public class PlayerAssignerController : MonoBehaviour
     public PlayerInputManager playerInputController;
 
     /// <summary>
+    /// Enables joining when the scene loads.
+    /// </summary>
+    private void Awake()
+    {
+        StartCoroutine("JoinEnabling");
+    }
+
+    private IEnumerator JoinEnabling()
+    {
+        for(int i = 1; i > 0; i--)
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
+
+        if (playerInputController.GetComponent<PlayerInputManager>().joiningEnabled
+            == false)
+        {
+            playerInputController.GetComponent<PlayerInputManager>().EnableJoining();
+        }
+    }
+
+    /// <summary>
     /// Disables join by button press once both players have joined.
     /// </summary>
     private void Update()
@@ -37,10 +59,13 @@ public class PlayerAssignerController : MonoBehaviour
                 PlayerJoinBehavior.JoinPlayersManually;
         }
 
-        if (player1 == null && player2 == null && gameObject.GetComponent
-            <GameController>().gameStarted == true)
+        if (SceneManager.GetActiveScene().name == "Level 1")
         {
-            SceneManager.LoadScene("LoseScene");
+            if (player1 == null && player2 == null && gameObject.GetComponent
+                <GameController>().gameStarted == true)
+            {
+                SceneManager.LoadScene("LoseScene");
+            }
         }
     }
 
