@@ -56,7 +56,5 @@ public class DialogueController : MonoBehaviour
             //Disables current dialogue.
             startDialogue[dialogueCounter].SetActive(false);
         }
-
-        mainCamera.GetComponent<AudioSource>().enabled = true;
     }
 }

@@ -100,14 +100,14 @@ public class DoorBehaviour : MonoBehaviour
     {
         if (door1Unlocked && door2Unlocked && door3Unlocked
            && door4Unlocked && door5Unlocked == true && enemyKillCounter >= 32 && 
-           turretKillCounter >= 17)
+           turretKillCounter >= 12)
         {
             door6TileMap.SetActive(false);
             door6Unlocked = true;
         }
         else if (door1Unlocked && door2Unlocked && door3Unlocked
             && door4Unlocked == true && enemyKillCounter >= 24 && turretKillCounter
-            >= 12)
+            >= 9)
         {
             door5TileMap.SetActive(false);
             door5Unlocked = true;

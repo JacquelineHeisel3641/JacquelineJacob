@@ -103,13 +103,16 @@ public class ButtonController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(click, camPos);
         }
+
+        Time.timeScale = 1f;
+
         SceneManager.LoadScene("Level 1");
     }
 
     /// <summary>
     /// not functional yet - will go to the settings page
     /// </summary>
-    public void HighScores()
+    public void ArachnophileMode()
     {
 
         Vector3 camPos = Camera.main.transform.position;
@@ -118,7 +121,8 @@ public class ButtonController : MonoBehaviour
             // Play sound effect 
             AudioSource.PlayClipAtPoint(click, camPos);
         }
-        // SceneManager.LoadScene("HighScores");
+
+        SceneManager.LoadScene("ArachnophileMode");
     }
     public void Settings()
     {
@@ -133,6 +137,7 @@ public class ButtonController : MonoBehaviour
         // SceneManager.LoadScene("HighScores");
         SceneManager.LoadScene("Settings");
     }
+
     public void Back()
     {
 
@@ -142,8 +147,13 @@ public class ButtonController : MonoBehaviour
             // Play sound effect 
             AudioSource.PlayClipAtPoint(click, camPos);
         }
+
+        Time.timeScale = 1f;
+
         // SceneManager.LoadScene("HighScores");
         SceneManager.LoadScene("Main Menu");
+
+        //SceneManager.UnloadScene("Tutorial Level");
     }
 
     /// <summary>

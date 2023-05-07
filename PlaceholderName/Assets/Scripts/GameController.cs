@@ -118,6 +118,10 @@ public class GameController : MonoBehaviour
             {
                 break;
             }
+            else if(SceneManager.GetActiveScene().name == "ArachnophileMode")
+            {
+                break;
+            }
 
             yield return new WaitForSeconds(1f);
         }
